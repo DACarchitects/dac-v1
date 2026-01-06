@@ -11,6 +11,13 @@ import { NextJsIcon } from "@/components/icons/nextjs";
 
 // This page is using the craft.tsx component and design system
 export default function Home() {
+  const secret = process.env.WORDPRESS_WEBHOOK_SECRET;
+  console.log(
+    "ENV secret length:",
+    process.env.WORDPRESS_WEBHOOK_SECRET?.length
+  );
+  console.log("Header secret length:", secret?.length);
+
   return (
     <Section>
       <Container>
