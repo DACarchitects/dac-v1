@@ -5,9 +5,21 @@ import { Section, Container, Prose } from "@/components/craft";
 import Link from "next/link";
 
 // Icons
-import { File, Pen, Tag, Diamond, User, Folder } from "lucide-react";
+import {
+  File,
+  Pen,
+  Tag,
+  Diamond,
+  User,
+  Folder,
+  HelpCircle,
+} from "lucide-react";
 import { WordPressIcon } from "@/components/icons/wordpress";
 import { NextJsIcon } from "@/components/icons/nextjs";
+import { DAC_Icon } from "@/components/icons/DAC_Icon";
+
+// Hero
+import Hero from "@/components/Hero";
 
 // This page is using the craft.tsx component and design system
 export default function Home() {
@@ -19,11 +31,14 @@ export default function Home() {
   console.log("Header secret length:", secret?.length);
 
   return (
-    <Section>
-      <Container>
-        <ToDelete />
-      </Container>
-    </Section>
+    <>
+      <Hero />
+      <Section>
+        <Container>
+          <ToDelete />
+        </Container>
+      </Section>
+    </>
   );
 }
 
@@ -70,8 +85,11 @@ const ToDelete = () => {
 
         <div className="flex gap-2 items-center">
           <WordPressIcon className="text-foreground" width={32} height={32} />
-          <NextJsIcon className="text-foreground" width={32} height={32} />
+          <NextJsIcon className="text-foreground" />
         </div>
+      </div>
+      <div className="w-32">
+        <DAC_Icon className="text-foreground" />
       </div>
 
       <div className="grid md:grid-cols-3 gap-4 mt-6">

@@ -37,8 +37,8 @@ export default function RootLayout({
       <body className={cn("min-h-screen font-sans antialiased", font.variable)}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark" // "light" | "dark"
+          // enableSystem // uncomment to enable system theme detection (dark/light)
           disableTransitionOnChange
         >
           <Nav />
