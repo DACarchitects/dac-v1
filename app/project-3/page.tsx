@@ -1,16 +1,15 @@
-import Image from "next/image";
 // Craft Imports
 import { Section, Container, Prose } from "@/components/craft";
 
 // This page is using the craft.tsx component and design system
-export default function Project1() {
+export default function Project3() {
   return (
     <>
       <section className="relative bg-primary py-24 lg:py-32 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
+            src="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
             alt=""
             className="h-full w-full object-cover"
           />
@@ -23,7 +22,7 @@ export default function Project1() {
               className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
               style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
             >
-              Project 1
+              Project 3
             </h1>
             <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -34,7 +33,7 @@ export default function Project1() {
       <Container className="rounded-lg bg-card p-8">
         <div className="space-y-6 mx-auto max-w-6xl">
           <h2 className="mb-6 text-balance text-2xl font-bold tracking-tight text-card-foreground">
-            Project 1 Details
+            Project 3 Details
           </h2>
           <p className="text-pretty text-card-foreground">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
@@ -45,27 +44,6 @@ export default function Project1() {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
-
-          <div className="mt-12 flex flex-col md:flex-row gap-8">
-            <div>
-              <Image
-                src="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
-                width={600}
-                height={400}
-                alt="Project Image"
-                className="rounded-lg"
-              />
-            </div>
-            <div>
-              <Image
-                src="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
-                width={600}
-                height={400}
-                alt="Project Image"
-                className="rounded-lg"
-              />
-            </div>
-          </div>
         </div>
       </Container>
     </>

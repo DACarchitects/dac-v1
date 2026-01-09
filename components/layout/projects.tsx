@@ -22,7 +22,7 @@ function ProjectCard({
       className="group relative overflow-hidden rounded-lg shadow-md transition-transform hover:scale-[1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     >
       {/* Image */}
-      <div className="relative aspect-[16/9] w-full">
+      <div className="relative aspect-video w-full">
         <Image
           src={imageUrl || "/placeholder.svg"}
           alt={imageAlt}
@@ -30,7 +30,7 @@ function ProjectCard({
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         {/* Dark overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/50 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-accent/90 via-accent/50 to-transparent" />
       </div>
 
       {/* Overlay text */}
@@ -63,13 +63,13 @@ export default function Projects() {
           title="Crispy Cone Project"
           description="A sleek urban apartment designed for city living and ice cream lovers."
           imageUrl="https://dacarch.com/wp-content/uploads/2026/01/Crispy-Cone-Project-1-scaled.jpg"
-          href="/projects/crispy-cone-project"
+          href="/project-2"
         />
         <ProjectCard
           title="Modular Container"
           description="A charming cottage nestled in a serene countryside setting."
           imageUrl="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
-          href="/projects/modular-shipping-container"
+          href="/project-3"
         />
       </div>
     </Section>

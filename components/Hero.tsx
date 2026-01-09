@@ -62,9 +62,11 @@ export default function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Button size="lg" className="w-full sm:w-auto">
-            Get a quote
-          </Button>
+          <Link href="/contact">
+            <Button size="lg" className="w-full sm:w-auto">
+              Get a quote
+            </Button>
+          </Link>
           <Link href="/#projects">
             <Button
               size="lg"
