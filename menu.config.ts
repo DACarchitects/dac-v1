@@ -1,9 +1,10 @@
 // Define the menu items
 export const mainMenu = {
   home: "/",
-  about: "/pages/about",
-  blog: "/posts",
+  services: "/test",
+  projects: "/test2",
 };
+``;
 
 export const contentMenu = {
   categories: "/posts/categories",

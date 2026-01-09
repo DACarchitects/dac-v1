@@ -31,4 +31,17 @@ const nextConfig: NextConfig = {
   },
 };
 
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "dacarch.com",
+        // port: "",
+        // pathname: "/account123/**",
+      },
+    ],
+  },
+};
+
 export default nextConfig;
