@@ -43,7 +43,7 @@ export default function Hero() {
         />
 
         {/* Gradient stays untouched */}
-        <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/30 to-background" />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/10 to-background" />
       </div>
 
       {/* Content */}

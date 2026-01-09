@@ -1,11 +1,8 @@
-// Craft Imports
-import { Section, Container } from "@/components/craft";
 // Components
 import Hero from "@/components/Hero";
 import Services from "@/components/layout/services";
 import About from "@/components/layout/about";
 
-// This page is using the craft.tsx component and design system
 export default function Home() {
   const secret = process.env.WORDPRESS_WEBHOOK_SECRET;
   console.log(
@@ -21,12 +18,7 @@ export default function Home() {
         <div style={{ marginTop: "-2rem", zIndex: "10", position: "relative" }}>
           <Services />
         </div>
-        <div className="mb-4 max-w-[75%] mx-auto">
-          <hr />
-        </div>
-        <div className="mt-18">
-          <About />
-        </div>
+        <About />
       </main>
     </>
   );

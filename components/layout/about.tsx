@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 export default function About() {
   return (
-    <Container className="!pt-0 -mt-8">
-      <Prose className="pb-8">
+    <Container>
+      <Prose className="py-8">
         <h1>About Us</h1>
       </Prose>
 
@@ -31,7 +31,7 @@ export default function About() {
         </section>
       </Prose>
 
-      <div className="flex justify-between items-center gap-4">
+      {/* <div className="flex justify-between items-center gap-4">
         <div className="flex items-center gap-3"></div>
 
         <div className="flex gap-2 items-center">
@@ -39,7 +39,7 @@ export default function About() {
             Contact Us
           </Button>
         </div>
-      </div>
+      </div> */}
     </Container>
   );
 }
