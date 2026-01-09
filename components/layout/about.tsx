@@ -1,6 +1,5 @@
 import { Section, Container, Prose } from "@/components/craft";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
 export default function About() {
   return (

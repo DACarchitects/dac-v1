@@ -48,7 +48,7 @@ function ProjectCard({
 
 export default function Projects() {
   return (
-    <Section className="px-6 lg:px-28 2xl:px-48 xl:px-36" id="projects">
+    <Section className="px-6 lg:px-28 2xl:px-48 xl:px-36 mb-18" id="projects">
       <Prose className="pb-8 text-center">
         <h2>Our Projects</h2>
       </Prose>
