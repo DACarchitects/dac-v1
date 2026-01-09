@@ -8,6 +8,7 @@ import { siteConfig } from "@/site.config";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { DAC_Icon } from "../icons/DAC_Icon";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 interface NavProps {
   className?: string;
@@ -63,7 +64,7 @@ export function Nav({ className, children, id }: NavProps) {
           <Button asChild className="hidden sm:flex">
             <Link href="/contact">Contact</Link>
           </Button>
-
+          <ThemeToggle />
           <MobileNav />
         </div>
       </div>

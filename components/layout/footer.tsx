@@ -1,5 +1,5 @@
 import { Container } from "@/components/craft";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
+// import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { siteConfig } from "@/site.config";
 import Link from "next/link";
 import { DAC_Icon } from "../icons/DAC_Icon";
@@ -56,9 +56,7 @@ export function Footer() {
             <span className="ml-5 text-sm text-muted-foreground">
               All rights reserved, {new Date().getFullYear()}
             </span>
-            <div className="-mt-4 sm:hidden">
-              <ThemeToggle />
-            </div>
+            <div className="-mt-4 sm:hidden">{/* <ThemeToggle /> */}</div>
           </div>
         </div>
         {/* <p className="text-muted-foreground">
@@ -82,7 +80,7 @@ export function Footer() {
               }}
             />
           </a>
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </div>
       </Container>
     </footer>

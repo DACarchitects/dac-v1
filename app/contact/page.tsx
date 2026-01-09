@@ -1,9 +1,6 @@
 // Craft Imports
 import { Section, Container, Prose } from "@/components/craft";
 
-// Next.js Imports
-import Link from "next/link";
-
 // Others
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
@@ -41,7 +38,7 @@ export default function Contact() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://dacarch.com/wp-content/uploads/2026/01/Untitled_sketch.jpg"
+            src="https://dacarch.com/wp-content/uploads/2026/01/arch-image-scaled.jpg"
             alt=""
             className="h-full w-full object-cover"
           />
@@ -57,13 +54,12 @@ export default function Contact() {
               Get in Touch
             </h1>
             <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
-              Ready to find your dream property? Our experienced team is here to
-              guide you through every step of your real estate journey.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             </p>
           </div>
         </div>
       </section>
-      <div className="rounded-lg bg-card p-8 shadow-sm">
+      <Container className="rounded-lg bg-card p-8 shadow-lg mt-2">
         <div className="space-y-6 mx-auto max-w-6xl">
           <h2 className="mb-6 text-balance text-2xl font-bold tracking-tight text-card-foreground">
             Contact Information
@@ -105,7 +101,7 @@ export default function Contact() {
             );
           })}
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

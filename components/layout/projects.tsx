@@ -57,7 +57,7 @@ export default function Projects() {
           title="Modern Family Home"
           description="A beautiful modern family home with open spaces and natural light."
           imageUrl="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
-          href="/projects/modern-family-home"
+          href="/project-1"
         />
         <ProjectCard
           title="Crispy Cone Project"
