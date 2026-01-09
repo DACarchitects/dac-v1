@@ -2,6 +2,7 @@
 import Hero from "@/components/Hero";
 import Services from "@/components/layout/services";
 import About from "@/components/layout/about";
+import Projects from "@/components/layout/projects";
 
 export default function Home() {
   const secret = process.env.WORDPRESS_WEBHOOK_SECRET;
@@ -19,6 +20,10 @@ export default function Home() {
           <Services />
         </div>
         <About />
+        <div className="max-w-[75%] mx-auto">
+          <hr />
+        </div>
+        <Projects />
       </main>
     </>
   );

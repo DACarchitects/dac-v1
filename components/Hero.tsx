@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
@@ -64,13 +65,21 @@ export default function Hero() {
           <Button size="lg" className="w-full sm:w-auto">
             Get a quote
           </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="w-full sm:w-auto bg-transparent"
-          >
-            Our Projects
-          </Button>
+          <Link href="/#projects">
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto bg-transparent"
+              style={
+                {
+                  //   borderColor: "black",
+                  //   backgroundColor: "rgba(1, 1, 1, .1)",
+                }
+              }
+            >
+              Our Projects
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 
 export default function About() {
   return (
-    <Container>
-      <Prose className="py-8">
-        <h1>About Us</h1>
+    <Container className="mt-0 mb-4">
+      <Prose className="pb-8 text-center">
+        <h2>About Us</h2>
       </Prose>
 
       <Prose>
