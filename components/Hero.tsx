@@ -67,21 +67,26 @@ export default function Hero() {
               Get a quote
             </Button>
           </Link>
-          <Link href="/#projects">
-            <Button
-              size="lg"
-              variant="outline"
-              className="w-full sm:w-auto bg-transparent"
-              style={
-                {
-                  //   borderColor: "black",
-                  //   backgroundColor: "rgba(1, 1, 1, .1)",
-                }
+          <Button
+            size="lg"
+            variant="outline"
+            className="w-full sm:w-auto bg-transparent"
+            style={
+              {
+                //   borderColor: "black",
+                //   backgroundColor: "rgba(1, 1, 1, .1)",
               }
-            >
-              Our Projects
-            </Button>
-          </Link>
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              const projectsSection = document.getElementById("projects");
+              if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            Our Projects
+          </Button>
         </div>
       </div>
     </section>

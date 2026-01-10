@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Container } from "@/components/craft";
 // Components
 import Hero from "@/components/Hero";
 import Services from "@/components/layout/services";
@@ -100,7 +101,7 @@ export default function Home() {
         />
 
         <p className="text-center mt-16 mb-8 text-3xl font-semibold">
-          What Our Clients Say (work in progress)
+          What Our Clients Say
         </p>
         <TestimonialsCarousel testimonials={testimonialsArray} />
       </main>
