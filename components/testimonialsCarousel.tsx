@@ -34,11 +34,16 @@ export function TestimonialsCarousel({
   const [baseCardsVisible, setBaseCardsVisible] = useState(
     cardsPerView.desktop || 3
   );
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Define the "Peek" amount (0.33 = 1/3 of a card)
   const peekAmount = 0.33;
   const effectiveVisibleCards = baseCardsVisible + peekAmount;
+
+  // Minimum swipe distance (in px) to trigger a slide change
+  const minSwipeDistance = 50;
 
   useEffect(() => {
     const updateCardsVisible = () => {
@@ -68,11 +73,38 @@ export function TestimonialsCarousel({
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
 
+  // Touch Handlers for Mobile Swipe
+  const onTouchStart = (e: TouchEvent) => {
+    setTouchEnd(null); // Reset for new swipe
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentIndex < maxIndex) {
+      goToNext();
+    } else if (isRightSwipe && currentIndex > 0) {
+      goToPrevious();
+    }
+  };
+
   return (
     <div
       className="relative w-full max-w-7xl mx-auto px-2 md:px-16"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
     >
       <div className="relative">
         {/* 2. This container handles the clipping of the cards */}
