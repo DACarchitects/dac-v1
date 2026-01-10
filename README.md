@@ -62,6 +62,7 @@ Your site will be running at `http://localhost:3000`.
 ## Tech Stack
 
 ### Frontend
+
 - **Next.js 16.1** - React framework with App Router
 - **React 19.1** - Latest React with Server Components
 - **TypeScript 5.9** - Type-safe development
@@ -70,10 +71,12 @@ Your site will be running at `http://localhost:3000`.
 - **Lucide React** - Beautiful icon library
 
 ### Backend
+
 - **WordPress** - Headless CMS via REST API
 - **Custom WordPress Plugin** - Cache revalidation
 
 ### Deployment & Tools
+
 - **Vercel/Railway** - Deployment platforms
 - **pnpm** - Fast, disk space efficient package manager
 - **ESLint** - Code linting
@@ -141,6 +144,7 @@ WORDPRESS_WEBHOOK_SECRET="your-secret-key-here"    # Secret for cache revalidati
 ## Development
 
 ### Prerequisites
+
 - **Node.js** 18.17 or later
 - **pnpm** 8.0 or later (recommended)
 - **WordPress** site with REST API enabled
@@ -167,17 +171,20 @@ pnpm lint
 ### Key Components
 
 #### Hero Section
+
 - Parallax scrolling effect
 - Smooth animations
 - Call-to-action buttons with proper scroll behavior
 
 #### Testimonials Carousel
+
 - Touch/swipe support for mobile
 - Auto-scroll option
 - Responsive card layouts (1/2/3 columns)
 - Navigation dots and arrow controls
 
 #### Navigation
+
 - Sticky header with backdrop blur on scroll
 - Mobile-friendly hamburger menu
 - Smooth anchor link scrolling
@@ -186,17 +193,20 @@ pnpm lint
 ## Deployment
 
 ### Railway (with WordPress)
+
 1. Click the "Deploy on Railway" button (if available)
 2. Configure environment variables
 3. Deploy WordPress and Next.js services
 
 ### Vercel (Recommended for Next.js)
+
 1. Push code to GitHub
 2. Import project to Vercel
 3. Add environment variables
 4. Deploy
 
 ### Manual Deployment
+
 ```bash
 # Build the project
 pnpm build
@@ -208,16 +218,20 @@ pnpm start
 ## WordPress Integration
 
 ### API Functions
+
 Located in `lib/wordpress.ts`, includes functions for:
+
 - Fetching posts, pages, authors, categories, tags
 - Pagination support
 - Search functionality
 - Custom fields and featured images
 
 ### Cache Revalidation
+
 Install the WordPress plugin from the `plugin/` directory to enable automatic cache invalidation when content is updated.
 
 ### Setting Up WordPress
+
 1. Ensure WordPress REST API is enabled
 2. Install and activate the revalidation plugin
 3. Configure the webhook URL in WordPress settings
@@ -226,7 +240,9 @@ Install the WordPress plugin from the `plugin/` directory to enable automatic ca
 ## Customization
 
 ### Site Configuration
+
 Edit `site.config.ts`:
+
 ```typescript
 export const siteConfig = {
   site_name: "DAC Architects",
@@ -236,7 +252,9 @@ export const siteConfig = {
 ```
 
 ### Navigation Menu
+
 Edit `menu.config.ts`:
+
 ```typescript
 export const mainMenu = {
   home: "/",
@@ -247,7 +265,9 @@ export const mainMenu = {
 ```
 
 ### Adding New Types
+
 Add interfaces to `lib/types.ts`:
+
 ```typescript
 export interface YourNewType {
   id: string;
@@ -256,6 +276,7 @@ export interface YourNewType {
 ```
 
 ### Styling
+
 - Global styles: `app/globals.css`
 - Tailwind config: Uses Tailwind CSS v4 syntax
 - Theme colors: Defined in CSS variables in `globals.css`
