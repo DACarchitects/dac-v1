@@ -30,7 +30,7 @@ export function Nav({ className, children, id }: NavProps) {
     <nav
       className={cn(
         "sticky top-0 z-50 border-b bg-background",
-        "transition-[background-color,backdrop-filter,box-shadow] duration-[1000ms] ease-in-out",
+        "transition-[background-color,backdrop-filter,box-shadow] duration-1000 ease-in-out",
         scrolled && "bg-background/50 backdrop-blur-md shadow-sm",
         className
       )}
@@ -38,7 +38,7 @@ export function Nav({ className, children, id }: NavProps) {
     >
       <div
         id="nav-container"
-        className="mx-auto flex max-w-5xl items-center justify-between py-4 px-6 sm:px-8"
+        className="mx-auto flex max-w-6xl items-center justify-between py-4 px-6 sm:px-8"
       >
         <Link
           className="flex items-center gap-4 transition-all hover:opacity-75"

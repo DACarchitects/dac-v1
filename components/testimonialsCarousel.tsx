@@ -1,27 +1,24 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, TouchEvent } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  TouchEvent,
+  useMemo,
+} from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-
-export interface Testimonial {
-  id: string;
-  content: string;
-  author: string;
-  role: string;
-  company?: string;
-  avatar?: string;
-  rating?: number;
-}
-
+import { Testimonial } from "@/lib/types";
 interface TestimonialsCarouselProps {
   testimonials: Testimonial[];
   autoScroll?: boolean;
   autoScrollInterval?: number;
   showControls?: boolean;
   cardsPerView?: {
-    mobile?: number;
-    tablet?: number;
-    desktop?: number;
+    mobile: number;
+    tablet: number;
+    desktop: number;
   };
 }
 
@@ -30,33 +27,25 @@ export function TestimonialsCarousel({
   autoScroll = false,
   autoScrollInterval = 5000,
   showControls = true,
-  cardsPerView = {
-    mobile: 1,
-    tablet: 2,
-    desktop: 3,
-  },
+  cardsPerView = { mobile: 1, tablet: 2, desktop: 3 },
 }: TestimonialsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [cardsVisible, setCardsVisible] = useState(cardsPerView.desktop || 3);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
+  const [baseCardsVisible, setBaseCardsVisible] = useState(
+    cardsPerView.desktop || 3
+  );
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Minimum swipe distance (in px) to trigger a slide change
-  const minSwipeDistance = 50;
+  // Define the "Peek" amount (0.33 = 1/3 of a card)
+  const peekAmount = 0.33;
+  const effectiveVisibleCards = baseCardsVisible + peekAmount;
 
   useEffect(() => {
     const updateCardsVisible = () => {
       const width = window.innerWidth;
-      if (width < 768) {
-        setCardsVisible(cardsPerView.mobile || 1);
-      } else if (width < 1024) {
-        setCardsVisible(cardsPerView.tablet || 2);
-      } else {
-        setCardsVisible(cardsPerView.desktop || 3);
-      }
+      if (width < 768) setBaseCardsVisible(cardsPerView.mobile || 1);
+      else if (width < 1024) setBaseCardsVisible(cardsPerView.tablet || 2);
+      else setBaseCardsVisible(cardsPerView.desktop || 3);
     };
 
     updateCardsVisible();
@@ -64,144 +53,92 @@ export function TestimonialsCarousel({
     return () => window.removeEventListener("resize", updateCardsVisible);
   }, [cardsPerView]);
 
-  const maxIndex = Math.max(0, testimonials.length - cardsVisible);
+  // maxIndex logic: subtract 1 so the user can't scroll into an empty void
+  // at the end of the list since we are showing 3.33 cards.
+  const maxIndex = Math.max(
+    0,
+    testimonials.length - Math.ceil(effectiveVisibleCards)
+  );
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex >= maxIndex ? 0 : prevIndex + 1));
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   }, [maxIndex]);
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex <= 0 ? maxIndex : prevIndex - 1));
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
-
-  // Touch Handlers for Mobile Swipe
-  const onTouchStart = (e: TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe && currentIndex < maxIndex) {
-      goToNext();
-    } else if (isRightSwipe && currentIndex > 0) {
-      goToPrevious();
-    }
-  };
-
-  useEffect(() => {
-    if (!autoScroll || isHovered || maxIndex === 0) return;
-    const interval = setInterval(goToNext, autoScrollInterval);
-    return () => clearInterval(interval);
-  }, [autoScroll, autoScrollInterval, isHovered, goToNext, maxIndex]);
-
-  if (!testimonials || testimonials.length === 0) return null;
-
-  const canScrollPrev = currentIndex > 0;
-  const canScrollNext = currentIndex < maxIndex;
 
   return (
-    /* Increased px-4 to px-12 to provide breathing room for the arrows */
     <div
-      className="relative w-full max-w-7xl mx-auto px-12"
+      className="relative w-full max-w-7xl mx-auto px-2 md:px-16"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative">
-        <div
-          className="overflow-hidden"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
+        {/* 2. This container handles the clipping of the cards */}
+        <div className="overflow-hidden px-1">
+          {" "}
+          {/* px-1 prevents card shadows from being cut off */}
           <div
             ref={containerRef}
             className="flex gap-6 transition-transform duration-500 ease-out"
             style={{
-              transform: `translateX(-${currentIndex * (100 / cardsVisible)}%)`,
+              transform: `translateX(-${
+                currentIndex === maxIndex && currentIndex !== 0
+                  ? // Calculate the exact percentage to show the end of the last card
+                    (testimonials.length - baseCardsVisible) *
+                      (100 / effectiveVisibleCards) +
+                    peekAmount * (100 / effectiveVisibleCards)
+                  : currentIndex * (100 / effectiveVisibleCards)
+              }%)`,
             }}
           >
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="flex-shrink-0 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-md"
+                className="shrink-0 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-md"
                 style={{
-                  width: `calc(${100 / cardsVisible}% - ${
-                    (cardsVisible - 1) * 1.5
-                  }rem / ${cardsVisible})`,
+                  width: `calc(${100 / effectiveVisibleCards}% - ${
+                    (baseCardsVisible * 1.5) / effectiveVisibleCards
+                  }rem)`,
                 }}
               >
+                {/* Card Content ... */}
                 <div className="p-6 h-full flex flex-col">
-                  <div className="mb-4 flex justify-center">
-                    <div className="rounded-full bg-blue-50 dark:bg-blue-900/20 p-2">
-                      <Quote className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                    </div>
-                  </div>
-
-                  <blockquote className="flex-grow mb-6">
-                    <p className="text-sm md:text-base leading-relaxed text-gray-700 dark:text-gray-300 text-center">
-                      "{testimonial.content}"
-                    </p>
-                  </blockquote>
-
-                  <div className="flex flex-col items-center gap-3 mt-auto">
-                    <div className="text-center">
-                      <p className="font-semibold text-sm text-gray-900 dark:text-gray-100">
-                        {testimonial.author}
-                      </p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
-                        {testimonial.role}
-                      </p>
-                    </div>
+                  <Quote className="h-5 w-5 text-blue-600 mb-4" />
+                  <p className="text-gray-700 dark:text-gray-300">
+                    "{testimonial.content}"
+                  </p>
+                  <div className="mt-auto pt-4">
+                    <p className="font-bold">{testimonial.author}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-
-        {showControls && testimonials.length > cardsVisible && (
-          <>
+        {/* Controls */}
+        {showControls && (
+          <div className="hidden md:block">
             <button
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-full shadow-lg p-2 disabled:opacity-30 transition-all hover:bg-gray-50 dark:hover:bg-gray-800 z-10"
+              className="absolute -left-12 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-full shadow-lg p-3 disabled:opacity-30 transition-all hover:scale-110 z-20"
               onClick={goToPrevious}
-              disabled={!canScrollPrev}
+              disabled={currentIndex === 0}
+              aria-label="Previous slide"
             >
               <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
             </button>
             <button
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-full shadow-lg p-2 disabled:opacity-30 transition-all hover:bg-gray-50 dark:hover:bg-gray-800 z-10"
+              className="absolute -right-12 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-full shadow-lg p-3 disabled:opacity-30 transition-all hover:scale-110 z-20"
               onClick={goToNext}
-              disabled={!canScrollNext}
+              disabled={currentIndex >= maxIndex}
+              aria-label="Next slide"
             >
               <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
             </button>
-          </>
+          </div>
         )}
       </div>
-
-      {/* Dots Indicator */}
-      {testimonials.length > cardsVisible && (
-        <div className="flex justify-center gap-2 mt-8">
-          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? "w-8 bg-blue-600" : "w-2 bg-gray-300"
-              }`}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
