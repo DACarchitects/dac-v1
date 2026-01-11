@@ -113,7 +113,7 @@ dac-v1/
 │   ├── posts/                   # Post-related components
 │   ├── theme/                   # Theme toggle components
 │   ├── ui/                      # shadcn/ui components
-│   ├── Hero.tsx                 # Hero section with parallax
+│   ├── heroHeader.tsx                 # Hero section with parallax
 │   ├── testimonialsCarousel.tsx # Testimonials carousel
 │   └── craft.tsx                # Utility components
 ├── lib/

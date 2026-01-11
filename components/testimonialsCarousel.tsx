@@ -38,8 +38,8 @@ export function TestimonialsCarousel({
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Define the "Peek" amount (0.33 = 1/3 of a card)
-  const peekAmount = 0.33;
+  const peekAmount = baseCardsVisible === 1 ? 0.15 : 0.33;
+
   const effectiveVisibleCards = baseCardsVisible + peekAmount;
 
   // Minimum swipe distance (in px) to trigger a slide change
@@ -58,12 +58,7 @@ export function TestimonialsCarousel({
     return () => window.removeEventListener("resize", updateCardsVisible);
   }, [cardsPerView]);
 
-  // maxIndex logic: subtract 1 so the user can't scroll into an empty void
-  // at the end of the list since we are showing 3.33 cards.
-  const maxIndex = Math.max(
-    0,
-    testimonials.length - Math.ceil(effectiveVisibleCards)
-  );
+  const maxIndex = Math.max(0, testimonials.length - baseCardsVisible);
 
   const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
@@ -117,10 +112,9 @@ export function TestimonialsCarousel({
             style={{
               transform: `translateX(-${
                 currentIndex === maxIndex && currentIndex !== 0
-                  ? // Calculate the exact percentage to show the end of the last card
+                  ? // Total items minus full visible slots, multiplied by the width of a slot
                     (testimonials.length - baseCardsVisible) *
-                      (100 / effectiveVisibleCards) +
-                    peekAmount * (100 / effectiveVisibleCards)
+                    (100 / effectiveVisibleCards)
                   : currentIndex * (100 / effectiveVisibleCards)
               }%)`,
             }}

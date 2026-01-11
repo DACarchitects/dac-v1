@@ -1,5 +1,6 @@
 // Craft Imports
 import { Section, Container, Prose } from "@/components/craft";
+import { ContactForm } from "@/components/contactForm";
 
 // Others
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
@@ -32,6 +33,7 @@ export default function Contact() {
       href: null,
     },
   ];
+
   return (
     <div>
       <section className="relative bg-primary py-24 lg:py-32 overflow-hidden">
@@ -59,8 +61,9 @@ export default function Contact() {
           </div>
         </div>
       </section>
-      <Container className="rounded-lg bg-card p-8 shadow-lg mt-2">
-        <div className="space-y-6 mx-auto max-w-6xl">
+      <Container className="rounded-lg bg-card p-8 mt-2 flex flex-col lg:flex-row gap-10 lg:gap-20">
+        <ContactForm />
+        <div className="space-y-6 md:mx-auto max-w-6xl">
           <h2 className="mb-6 text-balance text-2xl font-bold tracking-tight text-card-foreground">
             Contact Information
           </h2>

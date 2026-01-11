@@ -15,10 +15,10 @@ export default function About() {
             alt="Dean Corsaro"
             width={200}
             height={200}
-            className="circle-image !w-38 !h-38 sm:!w-40 sm:!h-40 md:!w-48 md:!h-48 lg:!w-52 lg:!h-52"
+            className="circle-image w-38! h-38! sm:w-40! sm:h-40! md:w-48! md:h-48! lg:w-52! lg:h-52!"
           />
 
-          <p className="!text-lg">
+          <p className="text-lg!">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
