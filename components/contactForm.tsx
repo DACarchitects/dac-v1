@@ -51,7 +51,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="rounded-lg bg-accent border border-[#686767] p-8 shadow-sm lg:p-10">
+    <div className="rounded-lg bg-accent border p-8 shadow-sm lg:p-10">
       <div className="mb-8">
         <h2 className="text-balance text-3xl font-bold tracking-tight text-card-foreground">
           {"Send us a message"}
