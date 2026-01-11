@@ -21,8 +21,17 @@ export function ContactForm() {
   // Initialize EmailJS
   useEffect(() => {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    console.log("EmailJS Config Check:", {
+      hasPublicKey: !!publicKey,
+      hasServiceId: !!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      hasTemplateId: !!process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+    });
+
     if (publicKey) {
       emailjs.init(publicKey);
+      console.log("EmailJS initialized successfully");
+    } else {
+      console.error("EmailJS public key is missing!");
     }
   }, []);
 
@@ -30,20 +39,41 @@ export function ContactForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+    // Validate environment variables
+    if (!serviceId || !templateId) {
+      console.error("Missing EmailJS configuration:", {
+        serviceId,
+        templateId,
+      });
+      alert(
+        "Email service is not configured properly. Please contact support."
+      );
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const result = await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+        serviceId,
+        templateId,
         e.target as HTMLFormElement
       );
 
       console.log("Email sent successfully:", result.text);
       (e.target as HTMLFormElement).reset();
       alert("Thank you for your message! We will get back to you soon.");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Email sending failed:", error);
+      console.error("Error details:", {
+        message: error?.message,
+        text: error?.text,
+        status: error?.status,
+      });
       alert(
-        "Sorry, there was an error sending your message. Please try again."
+        "Sorry, there was an error sending your message. Please try again or contact us directly."
       );
     } finally {
       setIsSubmitting(false);
