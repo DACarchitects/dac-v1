@@ -32,7 +32,7 @@ export const siteConfig: SiteConfig = {
   social: {
     twitter: "@DACArchitects",
     linkedin: "company/dac-architects",
-    instagram: "@dacarchitects",
+    instagram: "@dac_architects_llc",
   },
   og_image:
     "https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png",
