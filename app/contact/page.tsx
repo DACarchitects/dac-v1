@@ -1,73 +1,25 @@
 // Craft Imports
-import { Section, Container, Prose } from "@/components/craft";
+import { Container } from "@/components/craft";
 import { ContactForm } from "@/components/contactForm";
+import PageHeader from "@/components/pageHeader";
+import { contactDetails } from "../data";
 
-// Others
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
-
-// This page is using the craft.tsx component and design system
 export default function Contact() {
-  const contactDetails = [
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
-    },
-    {
-      icon: Mail,
-      label: "Email",
-      value: "info@realestatefirm.com",
-      href: "mailto:info@realestatefirm.com",
-    },
-    {
-      icon: MapPin,
-      label: "Office",
-      value: "123 Main Street, Suite 200\nNew York, NY 10001",
-      href: "https://maps.google.com",
-    },
-    {
-      icon: Clock,
-      label: "Hours",
-      value: "Mon - Fri: 9:00 AM - 6:00 PM\nSat: 10:00 AM - 4:00 PM",
-      href: null,
-    },
-  ];
-
   return (
-    <div>
-      <section className="relative bg-primary py-24 lg:py-32 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://dacarch.com/wp-content/uploads/2026/01/arch-image-scaled.jpg"
-            alt=""
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
+    <>
+      <PageHeader
+        title="Get in Touch"
+        subtitle="Lorem Ipsum Dolor Sit Amet Consectetur"
+        imgSrc="https://dacarch.com/wp-content/uploads/2026/01/arch-image-scaled.jpg"
+      />
 
-        <div className="container relative z-10 mx-auto px-4">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1
-              className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
-              style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
-            >
-              Get in Touch
-            </h1>
-            <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            </p>
-          </div>
-        </div>
-      </section>
       <Container className="rounded-lg bg-card p-8 mt-2 flex flex-col lg:flex-row gap-10 lg:gap-20">
         <ContactForm />
         <div className="space-y-6 md:mx-auto max-w-6xl">
           <h2 className="mb-6 text-balance text-2xl font-bold tracking-tight text-card-foreground">
             Contact Information
           </h2>
-          {contactDetails.map((detail) => {
+          {contactDetails.map((detail: any) => {
             const Icon = detail.icon;
             const content = (
               <div className="flex gap-4">
@@ -105,6 +57,6 @@ export default function Contact() {
           })}
         </div>
       </Container>
-    </div>
+    </>
   );
 }

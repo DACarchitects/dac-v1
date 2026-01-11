@@ -5,7 +5,6 @@ import About from "@/components/layout/about";
 import Projects from "@/components/layout/projects";
 import Ribbon from "@/components/layout/ribbon";
 import { TestimonialsCarousel } from "@/components/testimonialsCarousel";
-
 import { testimonialsArray } from "./data";
 
 export default function Home() {

@@ -1,4 +1,32 @@
-import { Testimonial } from "@/lib/types";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
+
+export const contactDetails = [
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+1 (412) 320-9569",
+    href: "tel:+14123209569",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "dacarchdesign@gmail.com",
+    href: "mailto:dacarchdesign@gmail.com",
+  },
+  {
+    icon: MapPin,
+    label: "Office",
+    value: "5767 75th Ave, Pinellas Park\nPinellas Park, FL 33781",
+    href: "https://maps.google.com",
+  },
+  {
+    icon: Clock,
+    label: "Hours",
+    value: "Mon - Fri: 9:00 AM - 6:00 PM\nSat: 10:00 AM - 4:00 PM",
+    href: null,
+  },
+];
+
 export const testimonialsArray = [
   {
     id: "1",
