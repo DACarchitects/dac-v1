@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
         ]
       : [],
   },
+  turbopack: {
+    root: __dirname,
+  },
   async redirects() {
     if (!wordpressUrl) {
       return [];

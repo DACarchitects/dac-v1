@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,30 +18,36 @@ import {
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission // await new Promise((resolve) => setTimeout(resolve, 2000));
-    emailjs
-      .sendForm(
+
+    try {
+      const result = await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
-        e.target as HTMLFormElement,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ""
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
+        e.target as HTMLFormElement
       );
-    setIsSubmitting(false); // Reset form or show success message
-    // reset form
-    (e.target as HTMLFormElement).reset();
-    // Show a success message to the user
-    alert("Thank you for your message! We will get back to you soon.");
+
+      console.log("Email sent successfully:", result.text);
+      (e.target as HTMLFormElement).reset();
+      alert("Thank you for your message! We will get back to you soon.");
+    } catch (error) {
+      console.error("Email sending failed:", error);
+      alert(
+        "Sorry, there was an error sending your message. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
