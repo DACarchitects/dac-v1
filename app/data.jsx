@@ -31,7 +31,7 @@ export const testimonialsArray = [
   {
     id: "1",
     content:
-      "This product has completely transformed how we work. The team is responsive, the features are intuitive, and the results speak for themselves. Highly recommended!",
+      "This product has completely transformed how we work! The team is responsive, the features are intuitive, and the results speak for themselves. Highly recommended!",
     author: "Sarita Johnson",
     role: "CEO",
     company: "TechStart Inc",
