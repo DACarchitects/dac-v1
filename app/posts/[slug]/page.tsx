@@ -68,20 +68,20 @@ export default async function Page({
         <Prose>
           <h1>
             <span
-                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-              ></span>
+              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+            ></span>
           </h1>
           <div className="flex justify-between items-center gap-4 text-sm mb-4">
-            <h5>
+            {/* <h5>
               Published {date} by{" "}
               {author.name && (
                 <span>
                   <a href={`/posts/?author=${author.id}`}>{author.name}</a>{" "}
                 </span>
               )}
-            </h5>
+            </h5> */}
 
-            <Link
+            {/* <Link
               href={`/posts/?category=${category.id}`}
               className={cn(
                 badgeVariants({ variant: "outline" }),
@@ -89,7 +89,7 @@ export default async function Page({
               )}
             >
               {category.name}
-            </Link>
+            </Link> */}
           </div>
           {featuredMedia?.source_url && (
             <div className="h-96 my-12 md:h-[500px] overflow-hidden flex items-center justify-center border rounded-lg bg-accent/25">

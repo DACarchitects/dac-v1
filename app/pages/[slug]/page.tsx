@@ -2,6 +2,8 @@ import { getPageBySlug, getAllPages } from "@/lib/wordpress";
 import { generateContentMetadata, stripHtml } from "@/lib/metadata";
 import { Section, Container, Prose } from "@/components/craft";
 import { notFound } from "next/navigation";
+// Custom Components
+import PageHeader from "@/components/pageHeader";
 
 import type { Metadata } from "next";
 
@@ -52,14 +54,25 @@ export default async function Page({
     notFound();
   }
 
+  console.log("Rendering page:", page);
+
+  const featuredImage = (page as any)?._embedded?.["wp:featuredmedia"]?.[0];
+  const imgSrc = featuredImage?.source_url;
+  const imgAlt = featuredImage?.alt_text || page?.title?.rendered || "";
+
   return (
-    <Section>
-      <Container>
-        <Prose>
-          <h2>{page.title.rendered}</h2>
-          <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
-        </Prose>
-      </Container>
-    </Section>
+    <>
+      {featuredImage && (
+        <PageHeader title={page.title.rendered} imgSrc={imgSrc} alt={imgAlt} />
+      )}
+      <Section>
+        <Container>
+          <Prose>
+            <h2>{page.title.rendered}</h2>
+            <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
+          </Prose>
+        </Container>
+      </Section>
+    </>
   );
 }

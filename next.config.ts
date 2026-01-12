@@ -41,7 +41,7 @@ module.exports = {
         protocol: "https",
         hostname: "dacarch.com",
         // port: "",
-        // pathname: "/account123/**",
+        pathname: "/**",
       },
     ],
   },

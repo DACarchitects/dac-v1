@@ -1,21 +1,29 @@
+import Image from "next/image";
+
 export default function PageHeader({
   title = "",
   subtitle = "",
   imgSrc = "",
+  alt = "Header Image",
 }: {
   title?: string;
   subtitle?: string;
   imgSrc?: string;
+  alt?: string;
 }) {
   return (
     <header className="relative bg-primary py-24 lg:py-32 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={imgSrc}
-          alt="Header Image"
-          className="h-full w-full object-cover"
-        />
+        {imgSrc && (
+          <Image
+            src={imgSrc}
+            className="h-full w-full object-cover"
+            fill
+            priority
+            alt={alt}
+          />
+        )}
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
@@ -27,9 +35,11 @@ export default function PageHeader({
           >
             {title}
           </h1>
-          <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
-            {subtitle}
-          </p>
+          {subtitle && (
+            <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
+              {subtitle}
+            </p>
+          )}
         </div>
       </div>
     </header>

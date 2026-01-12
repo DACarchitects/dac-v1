@@ -113,7 +113,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className={cn("min-h-screen font-sans antialiased", font.variable)}>
+      <body className={cn("min-h-screen font-sans antialiased", font.variable)} suppressHydrationWarning>
         {GoogleAnalytics_ID && (
           <>
             <Script

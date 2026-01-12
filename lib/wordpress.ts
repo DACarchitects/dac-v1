@@ -23,11 +23,7 @@ if (!isConfigured) {
 }
 
 class WordPressAPIError extends Error {
-  constructor(
-    message: string,
-    public status: number,
-    public endpoint: string
-  ) {
+  constructor(message: string, public status: number, public endpoint: string) {
     super(message);
     this.name = "WordPressAPIError";
   }
@@ -57,7 +53,9 @@ async function wordpressFetch<T>(
     throw new Error("WordPress URL not configured");
   }
 
-  const url = `${baseUrl}${path}${query ? `?${querystring.stringify(query)}` : ""}`;
+  const url = `${baseUrl}${path}${
+    query ? `?${querystring.stringify(query)}` : ""
+  }`;
 
   const response = await fetch(url, {
     headers: { "User-Agent": USER_AGENT },
@@ -102,7 +100,9 @@ async function wordpressFetchPaginated<T>(
     throw new Error("WordPress URL not configured");
   }
 
-  const url = `${baseUrl}${path}${query ? `?${querystring.stringify(query)}` : ""}`;
+  const url = `${baseUrl}${path}${
+    query ? `?${querystring.stringify(query)}` : ""
+  }`;
 
   const response = await fetch(url, {
     headers: { "User-Agent": USER_AGENT },
@@ -295,11 +295,20 @@ export async function getPageById(id: number): Promise<Page> {
   return wordpressFetch<Page>(`/wp-json/wp/v2/pages/${id}`);
 }
 
+// export async function getPageBySlug(slug: string): Promise<Page | undefined> {
+//   const pages = await wordpressFetchGraceful<Page[]>(
+//     "/wp-json/wp/v2/pages",
+//     [],
+//     { slug }
+//   );
+//   return pages[0];
+// }
+
 export async function getPageBySlug(slug: string): Promise<Page | undefined> {
   const pages = await wordpressFetchGraceful<Page[]>(
     "/wp-json/wp/v2/pages",
     [],
-    { slug }
+    { slug, _embed: true }
   );
   return pages[0];
 }
@@ -353,11 +362,10 @@ export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
 }
 
 export async function searchCategories(query: string): Promise<Category[]> {
-  return wordpressFetchGraceful<Category[]>(
-    "/wp-json/wp/v2/categories",
-    [],
-    { search: query, per_page: 100 }
-  );
+  return wordpressFetchGraceful<Category[]>("/wp-json/wp/v2/categories", [], {
+    search: query,
+    per_page: 100,
+  });
 }
 
 export async function searchTags(query: string): Promise<Tag[]> {
