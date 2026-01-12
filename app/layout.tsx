@@ -113,23 +113,23 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      {GoogleAnalytics_ID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GoogleAnalytics_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="gtag-init" strategy="afterInteractive">
-            {`
+      <body className={cn("min-h-screen font-sans antialiased", font.variable)}>
+        {GoogleAnalytics_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GoogleAnalytics_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){ dataLayer.push(arguments); }
               gtag('js', new Date());
               gtag('config', '${GoogleAnalytics_ID}', { page_path: window.location.pathname });
             `}
-          </Script>
-        </>
-      )}
-      <body className={cn("min-h-screen font-sans antialiased", font.variable)}>
+            </Script>
+          </>
+        )}
         <ThemeProvider
           attribute="class"
           defaultTheme="dark" // "light" | "dark"
