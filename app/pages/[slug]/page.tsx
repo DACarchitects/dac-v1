@@ -54,7 +54,7 @@ export default async function Page({
     notFound();
   }
 
-  console.log("Rendering page:", page);
+  // console.log("Rendering page:", page);
 
   const featuredImage = (page as any)?._embedded?.["wp:featuredmedia"]?.[0];
   const imgSrc = featuredImage?.source_url;

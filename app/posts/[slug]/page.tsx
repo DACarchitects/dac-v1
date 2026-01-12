@@ -77,11 +77,11 @@ export default async function Page({
       <Section>
         <Container>
           <Prose>
-            <h1>
+            {/* <h1>
               <span
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
               ></span>
-            </h1>
+            </h1> */}
             <div className="flex justify-between items-center gap-4 text-sm mb-4">
               {/* <h5>
               Published {date} by{" "}
