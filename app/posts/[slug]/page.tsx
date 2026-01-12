@@ -15,6 +15,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
+// Custom Components
+import PageHeader from "@/components/pageHeader";
+
 export async function generateStaticParams() {
   return await getAllPostSlugs();
 }
@@ -63,16 +66,24 @@ export default async function Page({
   const category = await getCategoryById(post.categories[0]);
 
   return (
-    <Section>
-      <Container>
-        <Prose>
-          <h1>
-            <span
-              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-            ></span>
-          </h1>
-          <div className="flex justify-between items-center gap-4 text-sm mb-4">
-            {/* <h5>
+    <>
+      {featuredMedia && (
+        <PageHeader
+          title={post.title.rendered}
+          imgSrc={featuredMedia.source_url}
+          alt={post.title.rendered}
+        />
+      )}
+      <Section>
+        <Container>
+          <Prose>
+            <h1>
+              <span
+                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+              ></span>
+            </h1>
+            <div className="flex justify-between items-center gap-4 text-sm mb-4">
+              {/* <h5>
               Published {date} by{" "}
               {author.name && (
                 <span>
@@ -81,7 +92,7 @@ export default async function Page({
               )}
             </h5> */}
 
-            {/* <Link
+              {/* <Link
               href={`/posts/?category=${category.id}`}
               className={cn(
                 badgeVariants({ variant: "outline" }),
@@ -90,21 +101,23 @@ export default async function Page({
             >
               {category.name}
             </Link> */}
-          </div>
-          {featuredMedia?.source_url && (
-            <div className="h-96 my-12 md:h-[500px] overflow-hidden flex items-center justify-center border rounded-lg bg-accent/25">
-              {/* eslint-disable-next-line */}
-              <img
-                className="w-full h-full object-cover"
-                src={featuredMedia.source_url}
-                alt={post.title.rendered}
-              />
             </div>
-          )}
-        </Prose>
+            {/* {featuredMedia?.source_url && (
+              <div className="h-96 my-12 md:h-[500px] overflow-hidden flex items-center justify-center border rounded-lg bg-accent/25">
+                <img
+                  className="w-full h-full object-cover"
+                  src={featuredMedia.source_url}
+                  alt={post.title.rendered}
+                />
+              </div>
+            )} */}
+          </Prose>
 
-        <Article dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-      </Container>
-    </Section>
+          <Article
+            dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+          />
+        </Container>
+      </Section>
+    </>
   );
 }
