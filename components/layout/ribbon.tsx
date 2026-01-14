@@ -8,7 +8,7 @@ export default function Ribbon({
 }: {
   ribbonImage: string;
   ribbonText: string;
-  ribbonSubtext: string;
+  ribbonSubtext?: string;
 }) {
   return (
     <section className="relative bg-primary py-24 lg:py-32 overflow-hidden">

@@ -8,13 +8,6 @@ import { TestimonialsCarousel } from "@/components/testimonialsCarousel";
 import { testimonialsArray } from "./data";
 
 export default function Home() {
-  const secret = process.env.WORDPRESS_WEBHOOK_SECRET;
-  console.log(
-    "ENV secret length:",
-    process.env.WORDPRESS_WEBHOOK_SECRET?.length
-  );
-  console.log("Header secret length:", secret?.length);
-
   return (
     <>
       <Hero />
@@ -28,8 +21,8 @@ export default function Home() {
         </div>
         <Projects />
         <Ribbon
-          ribbonText="Don Dino Divino"
-          ribbonSubtext="El Bambino"
+          ribbonText="Designing inspiring spaces"
+          // ribbonSubtext="El Bambino"
           ribbonImage="https://dacarch.com/wp-content/uploads/2026/01/construction-plans-drawing-tools-blueprints-scaled.jpg"
         />
 

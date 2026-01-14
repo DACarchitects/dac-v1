@@ -54,20 +54,20 @@ export default function Projects() {
       </Prose>
       <div className="grid md:grid-cols-3 gap-4 mt-6">
         <ProjectCard
-          title="Modern Family Home"
-          description="A beautiful modern family home with open spaces and natural light."
+          title="N. Ave. Barndominium"
+          description="Ligonier, Pennsylvania"
           imageUrl="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
           href="/project-1"
         />
         <ProjectCard
-          title="Crispy Cone Project"
-          description="A sleek urban apartment designed for city living and ice cream lovers."
+          title="Crispy Cones"
+          description="Clearwater, Florida"
           imageUrl="https://dacarch.com/wp-content/uploads/2026/01/Crispy-Cone-Project-1-scaled.jpg"
           href="/project-2"
         />
         <ProjectCard
-          title="Modular Container"
-          description="A charming cottage nestled in a serene countryside setting."
+          title="Wright Residence"
+          description="Dunedin, Florida"
           imageUrl="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
           href="/project-3"
         />

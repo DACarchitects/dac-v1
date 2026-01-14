@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  TouchEvent,
-  useMemo,
-} from "react";
+import { useState, useEffect, useCallback, useRef, TouchEvent } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { Testimonial } from "@/lib/types";
 interface TestimonialsCarouselProps {

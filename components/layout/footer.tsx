@@ -10,7 +10,7 @@ export function Footer() {
       <div className="max-w-[90%] mx-auto mt-12">
         <hr />
       </div>
-      <div className="max-w-6xl mx-auto flex flex-col h-24 md:flex-row md:gap-2 gap-6 justify-between md:items-center">
+      <div className="max-w-6xl mx-auto flex flex-col h-24 md:flex-row md:gap-2 gap-6 justify-between md:items-center px-4 md:px-0 py-4">
         <div>
           <div className="flex items-center gap-4">
             <Link className="flex items-center gap-2" href="/">

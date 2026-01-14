@@ -32,22 +32,23 @@ export default function Services() {
         <div className="flex-1">
           <Service
             icon={<BuildIcon />}
-            title="Custom Design"
-            description="Bring your unique vision to life. Our bespoke design process transforms your ideas into a one-of-a-kind home tailored to your lifestyle and preferences."
+            title="Custom Architectural Design"
+            description="Tailored architectural design for new construction projects, from single-family homes to small commercial and multifamily buildings. We translate ideas into clear, buildable designs that balance aesthetics, code compliance, and real-world construction."
           />
         </div>
         <div className="flex-1 md:border-r md:border-l">
           <Service
             icon={<HomeIcon />}
-            title="Residential Remodeling"
-            description="Create your dream home from the ground up. We specialize in creating beautiful and functional residential spaces that reflect our clients' lifestyles and preferences."
+            title="Residential & Commercial Renovations"
+            description="Architectural services for home renovations, additions and interiors, as well as commercial designs for retail, office, hospitality, and mixed-use projects. We focus on efficiency, code compliance, and permit-ready documentation that supports smooth approvals & construction."
           />
         </div>
         <div className="flex-1">
           <Service
             icon={<ExpandIcon />}
-            title="Extension & Renovation Design"
-            description="Expand your horizons without changing address. Our extension designs seamlessly integrate with your existing property, and adding value to your home."
+            title="Multifamily & Development Projects"
+            description="Architectural services for duplexes, townhomes, & small multifamily developments. From feasibility studies to permit-ready documentation, we help projects move efficiently from concept to permit. Designing thoughtful upgrades that increase value, and integrate seamlessly.
+"
           />
         </div>
       </div>

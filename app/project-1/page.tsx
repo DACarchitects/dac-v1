@@ -23,10 +23,10 @@ export default function Project1() {
               className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
               style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
             >
-              Project 1
+              N. Ave. Barndominium
             </h1>
             <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Ligonier, Pennsylvania
             </p>
           </div>
         </div>
@@ -34,16 +34,29 @@ export default function Project1() {
       <Container className="rounded-lg bg-card p-8">
         <div className="space-y-6 mx-auto max-w-6xl">
           <h2 className="mb-6 text-balance text-2xl font-bold tracking-tight text-card-foreground">
-            Project 1 Details
+            Project Details
           </h2>
           <p className="text-pretty text-card-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            The N. Ave. Barndominium is a custom single-family residence
+            designed for a corner lot in Ligonier, Pennsylvania. The project
+            blends a refined barndominium aesthetic with a functional
+            residential layout, balancing efficiency, durability, and everyday
+            livability.
+          </p>
+          <p className="text-pretty text-card-foreground">
+            The home is organized with open living, kitchen, and dining spaces
+            on the main level, while private bedrooms are located above. An
+            attached garage and covered porch were integrated into the overall
+            massing to maintain a cohesive exterior and support practical
+            day-to-day use.
+          </p>
+          <p className="text-pretty text-card-foreground">
+            Zoning constraints, floodplain requirements, and energy code
+            standards informed the building placement and design approach. The
+            project was developed with a strong focus on constructability and
+            long-term performance, resulting in a fully coordinated,
+            permit-ready set of construction documents that support a smooth
+            approval and building process.
           </p>
 
           <div className="mt-12 flex flex-col md:flex-row gap-8">

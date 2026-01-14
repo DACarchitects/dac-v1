@@ -23,10 +23,10 @@ export default function Project2() {
               className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
               style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
             >
-              Project 2
+              Crispy Cones
             </h1>
             <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Commercial Tenant Improvement in Clearwater, Florida
             </p>
           </div>
         </div>
@@ -34,16 +34,30 @@ export default function Project2() {
       <Container className="rounded-lg bg-card p-8">
         <div className="space-y-6 mx-auto max-w-6xl">
           <h2 className="mb-6 text-balance text-2xl font-bold tracking-tight text-card-foreground">
-            Project 2 Details
+            Project Details
           </h2>
           <p className="text-pretty text-card-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Crispy Cones is a commercial tenant improvement project converting
+            an existing strip-center space into a new franchise ice cream shop
+            in Clearwater, Florida. The scope included interior demolition, new
+            partitions, service counters, and back-of-house support spaces
+            tailored to the franchise's operational requirements.
+          </p>
+          <p className="text-pretty text-card-foreground">
+            The layout was designed to support efficient customer flow, clear
+            separation between public and service areas, and compliance with
+            accessibility and life safety requirements. The project was
+            classified as an Assembly occupancy and developed to meet Florida
+            Building Code, NFPA, and ADA standards, including occupant load
+            calculations, exit access, emergency lighting, and restroom
+            accessibility.
+          </p>
+          <p className="text-pretty text-card-foreground">
+            Architectural services focused on producing a coordinated,
+            permit-ready drawing set, integrating architectural, MEP, and life
+            safety requirements to support a smooth review and construction
+            process. The result is a clear, functional interior environment that
+            supports both daily operations and long-term franchise use.
           </p>
           <div className="mt-12 flex flex-col md:flex-row gap-8">
             <div>

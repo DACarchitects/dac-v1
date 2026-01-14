@@ -1,4 +1,5 @@
 // Craft Imports
+import Image from "next/image";
 import { Section, Container, Prose } from "@/components/craft";
 
 // This page is using the craft.tsx component and design system
@@ -22,10 +23,10 @@ export default function Project3() {
               className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
               style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
             >
-              Project 3
+              Wright Residence
             </h1>
             <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Dunedin, Florida
             </p>
           </div>
         </div>
@@ -33,17 +34,52 @@ export default function Project3() {
       <Container className="rounded-lg bg-card p-8">
         <div className="space-y-6 mx-auto max-w-6xl">
           <h2 className="mb-6 text-balance text-2xl font-bold tracking-tight text-card-foreground">
-            Project 3 Details
+            Project Details
           </h2>
           <p className="text-pretty text-card-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            The Wright Residence is a comprehensive residential renovation and
+            addition project located in Dunedin, Florida. The scope included a
+            full exterior facelift of the existing home along with new additions
+            to both rear flanking wings, expanding the program while maintaining
+            a cohesive architectural character.
           </p>
+          <p className="text-pretty text-card-foreground">
+            The design reconfigured interior spaces to improve flow,
+            functionality, and connection to the rear yard, while the new
+            additions introduced expanded living areas and supporting spaces.
+            Care was taken to integrate new construction seamlessly with the
+            existing structure, balancing proportion, rooflines, and material
+            transitions.
+          </p>
+          <p className="text-pretty text-card-foreground">
+            The project was developed in coordination with zoning requirements,
+            building code standards, and site constraints typical of established
+            residential neighborhoods in Dunedin. Architectural services focused
+            on clear documentation, constructability, and permit readiness,
+            resulting in a coordinated drawing set that supports efficient
+            review and construction.
+          </p>
+
+          <div className="mt-12 flex flex-col md:flex-row gap-8">
+            <div>
+              <Image
+                src="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
+                width={600}
+                height={400}
+                alt="Project Image"
+                className="rounded-lg"
+              />
+            </div>
+            <div>
+              <Image
+                src="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
+                width={600}
+                height={400}
+                alt="Project Image"
+                className="rounded-lg"
+              />
+            </div>
+          </div>
         </div>
       </Container>
     </>

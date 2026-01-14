@@ -53,18 +53,18 @@ export default function Hero() {
           className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
         >
-          Imagine, visualize, and create.
+          Design for excellence.
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-white sm:text-xl md:mt-8">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo officia
-          sunt.
+          Thoughtful, code-driven architecture focused on constructability,
+          clarity, and long-term value.
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link href="/contact">
             <Button size="lg" className="w-full sm:w-auto">
-              Get a quote
+              Start a Project
             </Button>
           </Link>
           <Button
@@ -85,7 +85,7 @@ export default function Hero() {
               }
             }}
           >
-            Our Projects
+            View Work
           </Button>
         </div>
       </div>
