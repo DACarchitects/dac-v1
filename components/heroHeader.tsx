@@ -53,7 +53,7 @@ export default function Hero() {
           className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
         >
-          Design for excellence.
+          Design for excellence
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-white sm:text-xl md:mt-8">
