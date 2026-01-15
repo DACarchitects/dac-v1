@@ -10,7 +10,7 @@ export default function Project3() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
+            src="https://dacarch.com/wp-content/uploads/2026/01/Front-render-.jpeg"
             alt=""
             className="h-full w-full object-cover"
           />
@@ -59,26 +59,36 @@ export default function Project3() {
             resulting in a coordinated drawing set that supports efficient
             review and construction.
           </p>
-
           <div className="mt-12 flex flex-col md:flex-row gap-8">
             <div>
               <Image
-                src="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
-                width={600}
+                src="https://dacarch.com/wp-content/uploads/2026/01/project-3-2.png"
+                width={585}
                 height={400}
                 alt="Project Image"
-                className="rounded-lg"
+                className="rounded-lg border border-accent shadow-xl"
               />
             </div>
             <div>
               <Image
-                src="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
+                src="https://dacarch.com/wp-content/uploads/2026/01/project-3-1.png"
                 width={600}
                 height={400}
                 alt="Project Image"
-                className="rounded-lg"
+                className="rounded-lg border border-accent shadow-xl"
               />
             </div>
+          </div>
+          <div className="flex justify-center">
+            <Image
+              src={
+                "https://dacarch.com/wp-content/uploads/2026/01/project-3-3.png"
+              }
+              width={1000}
+              height={600}
+              alt="Project Image"
+              className="rounded-lg border border-accent shadow-xl"
+            />
           </div>
         </div>
       </Container>

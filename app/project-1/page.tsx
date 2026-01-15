@@ -62,7 +62,7 @@ export default function Project1() {
           <div className="mt-12 flex flex-col md:flex-row gap-8">
             <div>
               <Image
-                src="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
+                src="https://dacarch.com/wp-content/uploads/2026/01/proj_1.png"
                 width={600}
                 height={400}
                 alt="Project Image"
@@ -71,9 +71,9 @@ export default function Project1() {
             </div>
             <div>
               <Image
-                src="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
-                width={600}
-                height={400}
+                src="https://dacarch.com/wp-content/uploads/2026/01/proj-1.png"
+                width={580}
+                height={200}
                 alt="Project Image"
                 className="rounded-lg"
               />

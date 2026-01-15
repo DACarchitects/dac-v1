@@ -1,8 +1,8 @@
 // Craft Imports
 import { Container } from "@/components/craft";
 import { ContactForm } from "@/components/contactForm";
-import PageHeader from "@/components/pageHeader";
 import { contactDetails } from "../data";
+import PageHeader from "@/components/pageHeader";
 
 export default function Contact() {
   return (

@@ -62,20 +62,20 @@ export default function Project2() {
           <div className="mt-12 flex flex-col md:flex-row gap-8">
             <div>
               <Image
-                src="https://dacarch.com/wp-content/uploads/2026/01/Crispy-Cone-Project-1-scaled.jpg"
+                src="https://dacarch.com/wp-content/uploads/2026/01/project_2.png"
                 width={600}
                 height={400}
                 alt="Project Image"
-                className="rounded-lg shadow-xl"
+                className="rounded-lg border border-accent shadow-xl"
               />
             </div>
             <div>
               <Image
-                src="https://dacarch.com/wp-content/uploads/2026/01/Crispy-Cone-Project-1-scaled.jpg"
+                src="https://dacarch.com/wp-content/uploads/2026/01/project-2.png"
                 width={600}
                 height={400}
                 alt="Project Image"
-                className="rounded-lg shadow-xl"
+                className="rounded-lg border border-accent shadow-xl"
               />
             </div>
           </div>

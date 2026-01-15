@@ -68,7 +68,7 @@ export default function Projects() {
         <ProjectCard
           title="Wright Residence"
           description="Dunedin, Florida"
-          imageUrl="https://dacarch.com/wp-content/uploads/2026/01/modular-shipping-container.png"
+          imageUrl="https://dacarch.com/wp-content/uploads/2026/01/Front-render-.jpeg"
           href="/project-3"
         />
       </div>
