@@ -83,22 +83,30 @@ export default function RootLayout({
 }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    additionalType: "Architect",
+    "@type": "Architect",
+    "@id": `${siteConfig.site_domain}#business`,
     name: siteConfig.site_name,
     description: siteConfig.site_description,
     url: siteConfig.site_domain,
     logo: siteConfig.og_image,
     image: siteConfig.og_image,
-    serviceType: "Architectural Design",
+    serviceType: ["Architectural Design", "Residential Architecture"],
     priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "5767 75th Ave",
+      addressLocality: "Pinellas Park",
+      addressRegion: "FL",
+      postalCode: "33781",
+      addressCountry: "US",
+    },
     sameAs: [
-      siteConfig.social.twitter
-        ? `https://twitter.com/${siteConfig.social.twitter.replace("@", "")}`
-        : "",
-      siteConfig.social.linkedin
-        ? `https://linkedin.com/in/${siteConfig.social.linkedin}`
-        : "",
+      // siteConfig.social.twitter
+      //   ? `https://twitter.com/${siteConfig.social.twitter.replace("@", "")}`
+      //   : "",
+      // siteConfig.social.linkedin
+      //   ? `https://linkedin.com/in/${siteConfig.social.linkedin}`
+      //   : "",
       siteConfig.social.instagram
         ? `https://instagram.com/${siteConfig.social.instagram.replace(
             "@",
