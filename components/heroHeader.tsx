@@ -38,7 +38,7 @@ export default function Hero() {
         <img
           ref={bgRef}
           src="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
-          alt=""
+          alt="Background Image of Architectural Design Project Rendering"
           className="h-full w-full object-cover will-change-transform"
           style={{ transform: "translate3d(0, 0, 0) scale(1.08)" }}
         />
