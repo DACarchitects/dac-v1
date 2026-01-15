@@ -3,6 +3,7 @@ import { Container } from "@/components/craft";
 import { siteConfig } from "@/site.config";
 import Link from "next/link";
 import { DAC_Icon } from "../icons/DAC_Icon";
+import { InstagramIcon } from "../icons/InstagramIcon";
 
 export function Footer() {
   return (
@@ -25,13 +26,14 @@ export function Footer() {
             </span>
           </div>
         </div>
-        <div className="items-center gap-2 hidden sm:flex">
+        <div className="items-center gap-1 hidden sm:flex">
+          <span className="text-sm text-mutted">Follow us on</span>
           <a
-            href="https://alfredodeveloper.com"
+            href="https://www.instagram.com/dac_architects_llc/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            {/* <img
               src="https://www.alfredorafael.com/wp-content/uploads/2019/02/whileLogoName-e1551079673184.png"
               alt="Alfredo Developer Logo"
               style={{
@@ -39,7 +41,8 @@ export function Footer() {
                 height: "auto",
                 marginTop: "0.25rem",
               }}
-            />
+            /> */}
+            <InstagramIcon width={32} height={32} />
           </a>
         </div>
       </div>
