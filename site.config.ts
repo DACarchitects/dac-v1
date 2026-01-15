@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
   site_description:
     "Professional architectural design firm specializing in modern residential and commercial projects.",
   site_tagline: "Design. Architect. Create.",
-  site_domain: "https://dacarchdesign.com/",
+  site_domain: "https://dacarchdesign.com",
   site_keywords: [
     "architecture",
     "architectural design",

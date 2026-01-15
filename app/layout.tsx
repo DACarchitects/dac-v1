@@ -13,6 +13,8 @@ import { siteConfig } from "@/site.config";
 import { cn } from "@/lib/utils";
 // types
 import type { Metadata } from "next";
+// data
+import { contactDetails } from "./data";
 
 const font = FontSans({
   subsets: ["latin"],
@@ -84,13 +86,12 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": `${siteConfig.site_domain}#business`,
+    "@id": `${siteConfig.site_domain}/#business`,
     name: siteConfig.site_name,
     description: siteConfig.site_description,
     url: siteConfig.site_domain,
     logo: siteConfig.og_image,
     image: siteConfig.og_image,
-    serviceType: ["Architectural Design", "Residential Architecture"],
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
@@ -100,6 +101,19 @@ export default function RootLayout({
       postalCode: "33781",
       addressCountry: "US",
     },
+
+    makesOffer: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Architectural Design",
+          serviceType: "Residential Architecture",
+        },
+      },
+    ],
+    telephone: contactDetails[0].plusSignAndOnlyDashesValue,
+    email: contactDetails[1].value,
     sameAs: [
       // siteConfig.social.twitter
       //   ? `https://twitter.com/${siteConfig.social.twitter.replace("@", "")}`

@@ -6,6 +6,7 @@ export const contactDetails = [
     label: "Phone",
     value: "+1 (412) 320-9569",
     href: "tel:+14123209569",
+    plusSignAndOnlyDashesValue: "+1-412-320-9569",
   },
   {
     icon: Mail,
