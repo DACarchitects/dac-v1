@@ -15,7 +15,7 @@ type SiteConfig = {
 export const siteConfig: SiteConfig = {
   site_name: "DAC Architects",
   site_description:
-    "Professional architectural design and consulting firm specializing in modern residential and commercial projects. We bring your vision to life through innovative design and expert craftsmanship.",
+    "Professional architectural design firm specializing in modern residential and commercial projects.",
   site_tagline: "Design. Architect. Create.",
   site_domain: "https://dacarchdesign.com/",
   site_keywords: [

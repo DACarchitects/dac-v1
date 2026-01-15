@@ -83,17 +83,21 @@ export default function RootLayout({
 }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
+    additionalType: "Architect",
     name: siteConfig.site_name,
     description: siteConfig.site_description,
     url: siteConfig.site_domain,
-    logo: `${siteConfig.site_domain}logo.png`,
+    logo: siteConfig.og_image,
+    image: siteConfig.og_image,
+    serviceType: "Architectural Design",
+    priceRange: "$$",
     sameAs: [
       siteConfig.social.twitter
         ? `https://twitter.com/${siteConfig.social.twitter.replace("@", "")}`
         : "",
       siteConfig.social.linkedin
-        ? `https://linkedin.com/${siteConfig.social.linkedin}`
+        ? `https://linkedin.com/in/${siteConfig.social.linkedin}`
         : "",
       siteConfig.social.instagram
         ? `https://instagram.com/${siteConfig.social.instagram.replace(
@@ -102,6 +106,7 @@ export default function RootLayout({
           )}`
         : "",
     ].filter(Boolean),
+    slogan: siteConfig.site_tagline,
   };
 
   return (
@@ -113,7 +118,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className={cn("min-h-screen font-sans antialiased", font.variable)} suppressHydrationWarning>
+      <body
+        className={cn("min-h-screen font-sans antialiased", font.variable)}
+        suppressHydrationWarning
+      >
         {GoogleAnalytics_ID && (
           <>
             <Script
