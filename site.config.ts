@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
   site_description:
     "Professional architectural design and consulting firm specializing in modern residential and commercial projects. We bring your vision to life through innovative design and expert craftsmanship.",
   site_tagline: "Design. Architect. Create.",
-  site_domain: "https://dacarch.com/",
+  site_domain: "https://dacarchdesign.com/",
   site_keywords: [
     "architecture",
     "architectural design",

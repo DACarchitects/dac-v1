@@ -26,12 +26,12 @@ export default function Ribbon({
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h1
+          <h2
             className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
             style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
           >
             {ribbonText}
-          </h1>
+          </h2>
           <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
             {ribbonSubtext}
           </p>
