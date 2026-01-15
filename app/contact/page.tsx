@@ -9,7 +9,7 @@ export default function Contact() {
     <>
       <PageHeader
         title="Get in Touch"
-        subtitle="For inquiries, project discussions, or collaborations, feel free to reach out via our phone, email, or  contact form!"
+        subtitle="For inquiries, project discussions, or collaborations, feel free to reach out via phone, email, or contact form below."
         imgSrc="https://dacarch.com/wp-content/uploads/2026/01/arch-image-scaled.jpg"
       />
 
