@@ -83,7 +83,7 @@ export default function RootLayout({
 }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Architect",
+    "@type": "ProfessionalService",
     "@id": `${siteConfig.site_domain}#business`,
     name: siteConfig.site_name,
     description: siteConfig.site_description,
