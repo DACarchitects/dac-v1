@@ -11,8 +11,8 @@ export const contactDetails = [
   {
     icon: Mail,
     label: "Email",
-    value: "dacarchdesign@gmail.com",
-    href: "mailto:dacarchdesign@gmail.com",
+    value: "Info@dacarch.com",
+    href: "mailto:Info@dacarch.com",
   },
   {
     icon: MapPin,
