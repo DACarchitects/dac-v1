@@ -1,4 +1,4 @@
-// app/projects/[slug]/pages.tsx
+// app/projects/[slug]/page.tsx
 
 import { getProjectBySlug, getAllProjectSlugs } from "@/lib/wordpress";
 

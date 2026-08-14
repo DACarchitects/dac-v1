@@ -63,16 +63,19 @@ export default async function Page({
   return (
     <>
       {featuredImage && (
-        <PageHeader title={page.title.rendered} imgSrc={imgSrc} alt={imgAlt} />
+        <PageHeader
+          title={page.title.rendered}
+          imgSrc={imgSrc}
+          alt={imgAlt}
+          textAlign="left"
+        />
       )}
-      <Section>
-        <Container>
-          <Prose>
-            <h2>{page.title.rendered}</h2>
-            <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
-          </Prose>
-        </Container>
-      </Section>
+      <Container>
+        <Prose>
+          {/* <h2>{page.title.rendered}</h2> */}
+          <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
+        </Prose>
+      </Container>
     </>
   );
 }

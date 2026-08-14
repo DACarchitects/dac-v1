@@ -78,12 +78,12 @@ export default async function Page({
     <Section>
       <Container>
         <div className="space-y-8">
-          <h1 className="text-3xl">
+          <h1 className="text-3xl underline decoration-1 decoration-primary underline-offset-4 mb-8">
             {selectedCategory
               ? `${selectedCategory.name} Projects`
               : "All Projects"}
           </h1>
-          <p className="text-muted-foreground text-xl">
+          <p className="text-xl">
             {selectedCategory
               ? selectedCategory.description
               : "Explore a selection of DAC projects across single-family residential, multifamily, development, and commercial architecture. Our portfolio reflects a range of project scales and challenges, from custom homes and commercial interiors to entitlement-driven infill projects and larger residential developments."}
@@ -98,7 +98,7 @@ export default async function Page({
               {search && " matching your search"}
             </p> */}
 
-          <div className="space-y-4">
+          <div className="my-12">
             <FilterProjects
               categories={categories}
               selectedCategory={category}

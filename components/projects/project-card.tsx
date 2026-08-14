@@ -44,7 +44,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="text-sm">
           {project.excerpt?.rendered
             ? truncateHtml(project.excerpt.rendered, 12)
-            : "No excerpt available"}
+            : "No excerpt available"}{" "}
         </div>
       </div>
 
@@ -53,7 +53,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
         <div className="flex justify-between items-center text-xs">
           <p>
-            <span className="font-bold">Project Category:</span>{" "}
+            <span className="font-bold">Type:</span>{" "}
             {category?.name || "Uncategorized"}
           </p>
         </div>

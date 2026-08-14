@@ -1,14 +1,17 @@
 import Image from "next/image";
+import { Section, Container, Prose } from "@/components/craft";
 
 export default function PageHeader({
   title = "",
   subtitle = "",
   imgSrc = "",
   alt = "Header Image",
+  textAlign = "center",
 }: {
   title?: string;
   subtitle?: string;
   imgSrc?: string;
+  textAlign?: "left" | "center" | "right";
   alt?: string;
 }) {
   return (
@@ -27,10 +30,18 @@ export default function PageHeader({
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
-        <div className="mx-auto max-w-3xl text-center">
+      <Container className="relative z-10 px-4">
+        <div
+          className={`max-w-3xl ${
+            textAlign === "left"
+              ? "mr-auto text-left"
+              : textAlign === "right"
+                ? "ml-auto text-right"
+                : "mx-auto text-center"
+          }`}
+        >
           <h1
-            className="text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl"
+            className={`text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl`}
             style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
           >
             {title}
@@ -41,7 +52,7 @@ export default function PageHeader({
             </p>
           )}
         </div>
-      </div>
+      </Container>
     </header>
   );
 }
