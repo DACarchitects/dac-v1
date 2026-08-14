@@ -78,7 +78,7 @@ export default async function Page({
     <Section>
       <Container>
         <div className="space-y-8">
-          <h1 className="text-3xl underline decoration-1 decoration-primary underline-offset-4 mb-8">
+          <h1 className="text-3xl mb-8 font-semibold">
             {selectedCategory
               ? `${selectedCategory.name} Projects`
               : "All Projects"}
@@ -98,7 +98,7 @@ export default async function Page({
               {search && " matching your search"}
             </p> */}
 
-          <div className="my-12">
+          <div className="flex flex-wrap items-center gap-2 my-12">
             <FilterProjects
               categories={categories}
               selectedCategory={category}

@@ -48,33 +48,35 @@ export function FilterProjects({
   const hasCategories = categories.length > 0;
 
   return (
-    <div className="grid md:grid-cols-[1fr_0.5fr] gap-2 my-4 z-10!">
-      <Select
-        value={selectedCategory || "all"}
-        onValueChange={handleCategoryChange}
-      >
-        <SelectTrigger disabled={!hasCategories}>
-          {hasCategories ? (
-            <SelectValue placeholder="View All Projects" />
-          ) : (
-            "No categories found"
-          )}
-        </SelectTrigger>
+    <>
+      <div className="flex-1 min-w-[200px] z-10!">
+        <Select
+          value={selectedCategory || "all"}
+          onValueChange={handleCategoryChange}
+        >
+          <SelectTrigger disabled={!hasCategories} className="w-full">
+            {hasCategories ? (
+              <SelectValue placeholder="View All Projects" />
+            ) : (
+              "No categories found"
+            )}
+          </SelectTrigger>
 
-        <SelectContent>
-          <SelectItem value="all">Select Project Category</SelectItem>
+          <SelectContent>
+            <SelectItem value="all">Select Project Category</SelectItem>
 
-          {categories.map((category) => (
-            <SelectItem key={category.id} value={category.slug}>
-              {category.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+            {categories.map((category) => (
+              <SelectItem key={category.id} value={category.slug}>
+                {category.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
       <Button variant="outline" onClick={handleResetFilters}>
-        Reset Filters
+        Reset Filter
       </Button>
-    </div>
+    </>
   );
 }

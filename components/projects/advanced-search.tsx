@@ -10,12 +10,16 @@ export function AdvancedSearch({ defaultValue }: { defaultValue?: string }) {
   const [isOpen, setIsOpen] = useState(!!defaultValue);
 
   return (
-    <div className="space-y-2">
+    <>
       <Button variant="outline" onClick={() => setIsOpen((prev) => !prev)}>
         Advanced search
       </Button>
 
-      {isOpen && <SearchInput defaultValue={defaultValue} />}
-    </div>
+      {isOpen && (
+        <div className="w-full">
+          <SearchInput defaultValue={defaultValue} />
+        </div>
+      )}
+    </>
   );
 }
