@@ -62,7 +62,7 @@ export function FilterProjects({
         </SelectTrigger>
 
         <SelectContent>
-          <SelectItem value="all">View All Projects</SelectItem>
+          <SelectItem value="all">Select Project Category</SelectItem>
 
           {categories.map((category) => (
             <SelectItem key={category.id} value={category.slug}>

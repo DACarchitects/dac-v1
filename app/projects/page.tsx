@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/pagination";
 
 import { Section, Container, Prose } from "@/components/craft";
-import { SearchInput } from "@/components/posts/search-input";
 import { ProjectCard } from "@/components/projects/project-card";
 import { FilterProjects } from "@/components/projects/filter";
+import { AdvancedSearch } from "@/components/projects/advanced-search";
 
 import type { Metadata } from "next";
 
@@ -78,31 +78,32 @@ export default async function Page({
     <Section>
       <Container>
         <div className="space-y-8">
-          <Prose>
-            <h2>{selectedCategory ? selectedCategory.name : "All Projects"}</h2>
-            <p className="text-muted-foreground">
-              {selectedCategory
-                ? selectedCategory.description
-                : "Browse all projects"}
-            </p>
-            <p className="text-muted-foreground">
-              {total} {total === 1 ? "project" : "projects"} found
-              {search && " matching your search"}
-            </p>
-
-            {/* <p className="text-muted-foreground">
+          <h1 className="text-3xl">
+            {selectedCategory
+              ? `${selectedCategory.name} Projects`
+              : "All Projects"}
+          </h1>
+          <p className="text-muted-foreground text-xl">
+            {selectedCategory
+              ? selectedCategory.description
+              : "Explore a selection of DAC projects across single-family residential, multifamily, development, and commercial architecture. Our portfolio reflects a range of project scales and challenges, from custom homes and commercial interiors to entitlement-driven infill projects and larger residential developments."}
+          </p>
+          {/* <p className="text-muted-foreground">
               {total} {total === 1 ? "project" : "projects"} found
               {search && " matching your search"}
             </p> */}
-          </Prose>
+
+          {/* <p className="text-muted-foreground">
+              {total} {total === 1 ? "project" : "projects"} found
+              {search && " matching your search"}
+            </p> */}
 
           <div className="space-y-4">
-            <SearchInput defaultValue={search} />
-
             <FilterProjects
               categories={categories}
               selectedCategory={category}
             />
+            <AdvancedSearch defaultValue={search} />
           </div>
 
           {projects.length > 0 ? (
