@@ -52,6 +52,10 @@ export default async function Page({
   const { data: projects, headers } = projectsResponse;
   const { total, totalPages } = headers;
 
+  const selectedCategory = category
+    ? categories.find((cat) => cat.slug === category)
+    : undefined;
+
   const createPaginationUrl = (newPage: number) => {
     const params = new URLSearchParams();
 
@@ -75,12 +79,21 @@ export default async function Page({
       <Container>
         <div className="space-y-8">
           <Prose>
-            <h2>All Projects</h2>
-
+            <h2>{selectedCategory ? selectedCategory.name : "All Projects"}</h2>
+            <p className="text-muted-foreground">
+              {selectedCategory
+                ? selectedCategory.description
+                : "Browse all projects"}
+            </p>
             <p className="text-muted-foreground">
               {total} {total === 1 ? "project" : "projects"} found
               {search && " matching your search"}
             </p>
+
+            {/* <p className="text-muted-foreground">
+              {total} {total === 1 ? "project" : "projects"} found
+              {search && " matching your search"}
+            </p> */}
           </Prose>
 
           <div className="space-y-4">

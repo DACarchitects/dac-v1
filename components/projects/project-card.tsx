@@ -52,7 +52,10 @@ export function ProjectCard({ project }: { project: Project }) {
         <hr />
 
         <div className="flex justify-between items-center text-xs">
-          <p>{category?.name || "Uncategorized"}</p>
+          <p>
+            <span className="font-bold">Project Category:</span>{" "}
+            {category?.name || "Uncategorized"}
+          </p>
         </div>
       </div>
     </Link>
