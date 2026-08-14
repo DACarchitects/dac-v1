@@ -5,7 +5,7 @@ interface ContentMetadataOptions {
   title: string;
   description: string;
   slug: string;
-  basePath: "posts" | "pages";
+  basePath: "posts" | "pages" | "projects";
 }
 
 export function generateContentMetadata({

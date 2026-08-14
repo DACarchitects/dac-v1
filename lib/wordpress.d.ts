@@ -1,3 +1,4 @@
+// lib/wordpress.d.ts
 // Common types that are reused across multiple entities
 interface WPEntity {
   id: number;
@@ -79,6 +80,18 @@ export interface Post extends WPEntity {
   _embedded?: PostEmbedded;
 }
 
+export interface Project extends WPEntity {
+  title: RenderedTitle;
+  content: RenderedContent;
+  excerpt: RenderedContent;
+  author: number;
+  featured_media: number;
+  template: string;
+  categories: number[];
+  meta: Record<string, unknown>;
+  _embedded?: PostEmbedded;
+}
+
 export interface Page extends WPEntity {
   title: RenderedTitle;
   content: RenderedContent;
@@ -92,7 +105,6 @@ export interface Page extends WPEntity {
   template: string;
   meta: Record<string, unknown>;
 }
-
 // Taxonomy types
 interface Taxonomy {
   id: number;
