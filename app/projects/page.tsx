@@ -78,16 +78,18 @@ export default async function Page({
     <Section>
       <Container>
         <div className="space-y-8">
-          <h1 className="text-3xl mb-8 font-semibold">
-            {selectedCategory
-              ? `${selectedCategory.name} Projects`
-              : "All Projects"}
-          </h1>
-          <p className="text-xl">
-            {selectedCategory
-              ? selectedCategory.description
-              : "Explore a selection of DAC projects across single-family residential, multifamily, development, and commercial architecture. Our portfolio reflects a range of project scales and challenges, from custom homes and commercial interiors to entitlement-driven infill projects and larger residential developments."}
-          </p>
+          <div key={`${category ?? "all"}-heading`} className="animate-fade-in">
+            <h1 className="text-3xl mb-8 font-semibold">
+              {selectedCategory
+                ? `${selectedCategory.name} Projects`
+                : "All Projects"}
+            </h1>
+            <p className="text-xl">
+              {selectedCategory
+                ? selectedCategory.description
+                : "Explore a selection of DAC projects across single-family residential, multifamily, development, and commercial architecture. Our portfolio reflects a range of project scales and challenges, from custom homes and commercial interiors to entitlement-driven infill projects and larger residential developments."}
+            </p>
+          </div>
           {/* <p className="text-muted-foreground">
               {total} {total === 1 ? "project" : "projects"} found
               {search && " matching your search"}
@@ -107,13 +109,19 @@ export default async function Page({
           </div>
 
           {projects.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-4">
+            <div
+              key={`${category ?? "all"}-${search ?? ""}-${page}`}
+              className="grid md:grid-cols-3 gap-4 animate-fade-in"
+            >
               {projects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           ) : (
-            <div className="h-24 w-full border rounded-lg bg-accent/25 flex items-center justify-center">
+            <div
+              key={`${category ?? "all"}-${search ?? ""}-${page}`}
+              className="h-24 w-full border rounded-lg bg-accent/25 flex items-center justify-center animate-fade-in"
+            >
               <p>There are no projects listed under this category</p>
             </div>
           )}

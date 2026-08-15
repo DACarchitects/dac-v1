@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 import {
   Select,
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/select";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import type { Category } from "@/lib/wordpress.d";
 
 interface FilterProjectsProps {
@@ -23,6 +25,7 @@ export function FilterProjects({
   selectedCategory,
 }: FilterProjectsProps) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const handleCategoryChange = (value: string) => {
     const newParams = new URLSearchParams(window.location.search);
@@ -36,20 +39,29 @@ export function FilterProjects({
       newParams.set("category", value);
     }
 
-    router.push(
-      `/projects${newParams.toString() ? `?${newParams.toString()}` : ""}`,
-    );
+    startTransition(() => {
+      router.push(
+        `/projects${newParams.toString() ? `?${newParams.toString()}` : ""}`,
+      );
+    });
   };
 
   const handleResetFilters = () => {
-    router.push("/projects");
+    startTransition(() => {
+      router.push("/projects");
+    });
   };
 
   const hasCategories = categories.length > 0;
 
   return (
     <>
-      <div className="flex-1 min-w-[200px] z-10!">
+      <div
+        className={cn(
+          "flex-1 min-w-[200px] z-10! transition-opacity duration-200",
+          isPending && "opacity-50",
+        )}
+      >
         <Select
           value={selectedCategory || "all"}
           onValueChange={handleCategoryChange}
