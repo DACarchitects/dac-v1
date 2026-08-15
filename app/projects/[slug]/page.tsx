@@ -58,11 +58,12 @@ export default async function Page({
           title={project.title.rendered}
           imgSrc={featuredMedia.source_url}
           alt={project.title.rendered}
+          // textAlign="left"
         />
       )}
 
       <Container>
-        <h2 className="text-2xl font-bold mb-4">Project Details</h2>
+        {/* <h2 className="text-2xl font-bold mb-4">Project Details</h2> */}
         <Article
           dangerouslySetInnerHTML={{
             __html: project.content.rendered,
