@@ -51,6 +51,16 @@ export default async function Page({
 
   const featuredMedia = project._embedded?.["wp:featuredmedia"]?.[0] ?? null;
 
+  // const categoryNames =
+  //   project._embedded?.["wp:term"]
+  //     ?.flat()
+  //     .filter(
+  //       (term) =>
+  //         (term as typeof term & { taxonomy?: string }).taxonomy === "category",
+  //     )
+  //     .map((term) => term.name)
+  //     .join(", ") ?? "";
+
   return (
     <>
       {featuredMedia && (
@@ -58,7 +68,9 @@ export default async function Page({
           title={project.title.rendered}
           imgSrc={featuredMedia.source_url}
           alt={project.title.rendered}
-          // textAlign="left"
+          textAlign="left"
+          // subtitle={stripHtml(project.excerpt.rendered)}
+          // subtitle={categoryNames}
         />
       )}
 
