@@ -3,12 +3,14 @@ export function DAC_Icon({
   textColor = "currentColor",
   lineColor = "currentColor",
   width,
+  height,
   ...props
 }: {
   className?: string;
   textColor?: string;
   lineColor?: string;
   width?: number;
+  height?: number | "auto";
 }) {
   return (
     <svg
@@ -19,7 +21,7 @@ export function DAC_Icon({
       className={className}
       {...props}
       width={width || 130}
-      height={"auto"}
+      height={height ?? "auto"}
     >
       <g id="Layer_2">
         <g>
