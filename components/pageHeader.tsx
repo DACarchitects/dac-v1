@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Section, Container, Prose } from "@/components/craft";
+import { stripHtml } from "@/lib/metadata";
 
 export default function PageHeader({
   title = "",
@@ -48,7 +49,7 @@ export default function PageHeader({
           </h1>
           {subtitle && (
             <p className="mt-6 text-pretty text-lg leading-relaxed text-white/90 lg:text-xl">
-              {subtitle}
+              {stripHtml(subtitle)}
             </p>
           )}
         </div>

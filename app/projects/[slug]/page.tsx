@@ -4,7 +4,7 @@ import { getProjectBySlug, getAllProjectSlugs } from "@/lib/wordpress";
 
 import { generateContentMetadata, stripHtml } from "@/lib/metadata";
 
-import { Section, Container, Article } from "@/components/craft";
+import { Container, Article } from "@/components/craft";
 
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";

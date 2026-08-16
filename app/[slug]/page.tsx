@@ -22,22 +22,27 @@ export default async function Page({
 
   return (
     <>
-      {featuredMedia && (
+      {featuredMedia ? (
         <PageHeader
           title={page.title.rendered}
           imgSrc={featuredMedia.source_url}
           alt={page.title.rendered}
+          textAlign="left"
         />
-      )}
-
-      <Section>
-        <Container>
-          {/* <h1 className="text-3xl mb-4">
+      ) : (
+        <Container className="pb-0 md:pb-0">
+          <h1 className="text-3xl">
             <span
               dangerouslySetInnerHTML={{ __html: page.title.rendered }}
             ></span>
-          </h1> */}
+          </h1>
+        </Container>
+      )}
 
+      <Section
+        className={`${featuredMedia ? "pt-4 md:pt-4" : "pt-0 md:pt-0"} min-h-screen`}
+      >
+        <Container>
           <Article
             dangerouslySetInnerHTML={{ __html: page.content.rendered }}
           />
