@@ -11,7 +11,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-import { Section, Container, Prose } from "@/components/craft";
+import { Section, Container, Article } from "@/components/craft";
 import { ProjectCard } from "@/components/projects/project-card";
 import { FilterProjects } from "@/components/projects/filter";
 import { AdvancedSearch } from "@/components/projects/advanced-search";
@@ -84,11 +84,11 @@ export default async function Page({
                 ? `${selectedCategory.name} Projects`
                 : "All Projects"}
             </h1>
-            <p className="text-xl">
+            <Article className="w-full text-lg text-muted-foreground">
               {selectedCategory
                 ? selectedCategory.description
                 : "Explore a selection of DAC projects across single-family residential, multifamily, development, and commercial architecture. Our portfolio reflects a range of project scales and challenges, from custom homes and commercial interiors to entitlement-driven infill projects and larger residential developments."}
-            </p>
+            </Article>
           </div>
           {/* <p className="text-muted-foreground">
               {total} {total === 1 ? "project" : "projects"} found
