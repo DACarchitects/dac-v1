@@ -1,9 +1,36 @@
 import { notFound } from "next/navigation";
 import { Section, Container, Article } from "@/components/craft";
 import { getPageBySlug } from "@/lib/wordpress";
+import { generateContentMetadata, stripHtml } from "@/lib/metadata";
+import { siteConfig } from "@/site.config";
 
 // Custom Components
 import PageHeader from "@/components/pageHeader";
+
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const page = await getPageBySlug(slug);
+
+  if (!page) {
+    return {};
+  }
+
+  const description = page.excerpt?.rendered
+    ? stripHtml(page.excerpt.rendered)
+    : stripHtml(page.content.rendered).slice(0, 200) + "...";
+
+  return generateContentMetadata({
+    title: stripHtml(page.title.rendered),
+    description,
+    url: `${siteConfig.site_domain}/${page.slug}`,
+  });
+}
 
 export default async function Page({
   params,
