@@ -4,8 +4,10 @@ import type { Metadata } from "next";
 interface ContentMetadataOptions {
   title: string;
   description: string;
-  slug: string;
-  basePath: "posts" | "pages" | "projects";
+  slug?: string;
+  basePath?: "posts" | "pages" | "projects";
+  /** Full canonical/OG URL override, for pages without a single content slug (e.g. archives). */
+  url?: string;
 }
 
 export function generateContentMetadata({
@@ -13,19 +15,23 @@ export function generateContentMetadata({
   description,
   slug,
   basePath,
+  url,
 }: ContentMetadataOptions): Metadata {
   const ogUrl = new URL(`${siteConfig.site_domain}/api/og`);
   ogUrl.searchParams.append("title", title);
   ogUrl.searchParams.append("description", description);
 
+  const contentUrl = url ?? `${siteConfig.site_domain}/${basePath}/${slug}`;
+
   return {
     title,
     description,
+    alternates: { canonical: contentUrl },
     openGraph: {
       title,
       description,
       type: "article",
-      url: `${siteConfig.site_domain}/${basePath}/${slug}`,
+      url: contentUrl,
       images: [
         {
           url: ogUrl.toString(),

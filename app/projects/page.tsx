@@ -15,13 +15,42 @@ import { Section, Container, Article } from "@/components/craft";
 import { ProjectCard } from "@/components/projects/project-card";
 import { FilterProjects } from "@/components/projects/filter";
 import { AdvancedSearch } from "@/components/projects/advanced-search";
+import { generateContentMetadata, stripHtml } from "@/lib/metadata";
+import { siteConfig } from "@/site.config";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description: "Browse all projects",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string; search?: string }>;
+}): Promise<Metadata> {
+  const { category, search } = await searchParams;
+
+  const selectedCategory = category
+    ? (await getProjectCategories()).find((cat) => cat.slug === category)
+    : undefined;
+
+  const title = selectedCategory
+    ? `${selectedCategory.name} Projects`
+    : search
+      ? `Projects matching "${search}"`
+      : "Projects";
+
+  const description = selectedCategory?.description
+    ? stripHtml(selectedCategory.description)
+    : "Browse a selection of DAC projects across single-family residential, multifamily, development, and commercial architecture.";
+
+  const params = new URLSearchParams();
+  if (category) params.set("category", category);
+  if (search) params.set("search", search);
+
+  return generateContentMetadata({
+    title,
+    description,
+    url: `${siteConfig.site_domain}/projects${params.toString() ? `?${params.toString()}` : ""}`,
+  });
+}
 
 export const dynamic = "auto";
 export const revalidate = 3600;
