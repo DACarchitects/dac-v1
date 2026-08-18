@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { Loader2 } from "lucide-react";
 
 import {
   Select,
@@ -85,6 +86,13 @@ export function FilterProjects({
           </SelectContent>
         </Select>
       </div>
+
+      {isPending && (
+        <span role="status" aria-live="polite">
+          <Loader2 className="h-4 w-4 animate-spin text-gray-400" />
+          <span className="sr-only">Updating projects…</span>
+        </span>
+      )}
 
       <Button variant="outline" onClick={handleResetFilters}>
         Reset Filter

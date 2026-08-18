@@ -1,6 +1,12 @@
 // app/projects/page.tsx
 
-import { getProjectsPaginated, getProjectCategories } from "@/lib/wordpress";
+import { Suspense } from "react";
+
+import {
+  getProjectsPaginated,
+  getProjectCategories,
+  getCategoryBySlug,
+} from "@/lib/wordpress";
 
 import {
   Pagination,
@@ -28,7 +34,7 @@ export async function generateMetadata({
   const { category, search } = await searchParams;
 
   const selectedCategory = category
-    ? (await getProjectCategories()).find((cat) => cat.slug === category)
+    ? await getCategoryBySlug(category)
     : undefined;
 
   const title = selectedCategory
@@ -55,6 +61,32 @@ export async function generateMetadata({
 export const dynamic = "auto";
 export const revalidate = 3600;
 
+// Categories used across all projects are resolved separately since they require
+// scanning every project, which is slower than fetching the current page of results.
+async function ProjectCategoryFilter({
+  selectedCategory,
+}: {
+  selectedCategory?: string;
+}) {
+  const categories = await getProjectCategories();
+
+  return (
+    <FilterProjects
+      categories={categories}
+      selectedCategory={selectedCategory}
+    />
+  );
+}
+
+function FilterProjectsSkeleton() {
+  return (
+    <>
+      <div className="flex-1 min-w-[200px] h-10 rounded-md border border-input bg-background animate-pulse" />
+      <div className="h-10 w-[104px] rounded-md border border-input bg-background animate-pulse" />
+    </>
+  );
+}
+
 export default async function Page({
   searchParams,
 }: {
@@ -70,20 +102,16 @@ export default async function Page({
   const page = pageParam ? parseInt(pageParam, 10) : 1;
   const projectsPerPage = 9;
 
-  const [projectsResponse, categories] = await Promise.all([
+  const [projectsResponse, selectedCategory] = await Promise.all([
     getProjectsPaginated(page, projectsPerPage, {
       category,
       search,
     }),
-    getProjectCategories(),
+    category ? getCategoryBySlug(category) : Promise.resolve(undefined),
   ]);
 
   const { data: projects, headers } = projectsResponse;
   const { total, totalPages } = headers;
-
-  const selectedCategory = category
-    ? categories.find((cat) => cat.slug === category)
-    : undefined;
 
   const createPaginationUrl = (newPage: number) => {
     const params = new URLSearchParams();
@@ -130,10 +158,9 @@ export default async function Page({
             </p> */}
 
           <div className="flex flex-wrap items-center gap-2 my-12">
-            <FilterProjects
-              categories={categories}
-              selectedCategory={category}
-            />
+            <Suspense fallback={<FilterProjectsSkeleton />}>
+              <ProjectCategoryFilter selectedCategory={category} />
+            </Suspense>
             <AdvancedSearch defaultValue={search} />
           </div>
 
