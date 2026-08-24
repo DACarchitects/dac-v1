@@ -1,16 +1,17 @@
 // app/projects/[slug]/page.tsx
-
-import { getProjectBySlug, getAllProjectSlugs } from "@/lib/wordpress";
-
+import {
+  getProjectBySlug,
+  getAllProjectSlugs,
+  getProjectImages,
+} from "@/lib/wordpress";
 import { generateContentMetadata, stripHtml } from "@/lib/metadata";
-
 import { Container, Article } from "@/components/craft";
-
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 // Custom Components
 import PageHeader from "@/components/pageHeader";
+import ProjectGallery from "@/components/projects/project-gallery";
 
 export async function generateStaticParams() {
   return await getAllProjectSlugs();
@@ -49,6 +50,10 @@ export default async function Page({
     notFound();
   }
 
+  const projectImages = await getProjectImages(
+    project.meta.project_images ?? [],
+  );
+
   const featuredMedia = project._embedded?.["wp:featuredmedia"]?.[0] ?? null;
 
   // const categoryNames =
@@ -75,12 +80,32 @@ export default async function Page({
       )}
 
       <Container>
-        {/* <h2 className="text-2xl font-bold mb-4">Project Details</h2> */}
+        {project.meta.heading_one && (
+          <h3 className="text-2xl mb-0 mt-6 font-bold">
+            {project.meta.heading_one}
+          </h3>
+        )}
+
+        {project.meta.heading_two && (
+          <h4 className="mt-0 mb-8 text-xl">{project.meta.heading_two}</h4>
+        )}
         <Article
           dangerouslySetInnerHTML={{
             __html: project.content.rendered,
           }}
         />
+
+        {projectImages.length > 0 && (
+          <>
+            <p className="mt-12 mb-8">
+              <i>Click to enlarge</i>
+            </p>
+            <ProjectGallery
+              images={projectImages}
+              alt={project.title.rendered}
+            />
+          </>
+        )}
       </Container>
     </>
   );

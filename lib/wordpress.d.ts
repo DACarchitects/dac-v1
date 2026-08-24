@@ -88,7 +88,12 @@ export interface Project extends WPEntity {
   featured_media: number;
   template: string;
   categories: number[];
-  meta: Record<string, unknown>;
+  meta: {
+    heading_one?: string;
+    heading_two?: string;
+    project_images?: number[];
+    [key: string]: unknown;
+  };
   _embedded?: PostEmbedded;
 }
 

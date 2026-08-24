@@ -249,6 +249,30 @@ export async function getProjectBySlug(
   return projects[0];
 }
 
+export async function getProjectImages(
+  ids: number[],
+): Promise<FeaturedMedia[]> {
+  if (!ids.length) {
+    return [];
+  }
+
+  const images = await wordpressFetchGraceful<FeaturedMedia[]>(
+    "/wp-json/wp/v2/media",
+    [],
+    {
+      include: ids.join(","),
+      per_page: 100,
+    },
+    ["wordpress", "project-images"],
+  );
+
+  const imagesById = new Map(images.map((image) => [image.id, image]));
+
+  return ids
+    .map((id) => imagesById.get(id))
+    .filter((image): image is FeaturedMedia => Boolean(image));
+}
+
 /**
  * Fetches recent posts (up to 100). For paginated access use getPostsPaginated().
  * For fetching ALL posts (e.g., sitemap), use getAllPostsForSitemap().
