@@ -6,6 +6,11 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { FeaturedMedia } from "@/lib/wordpress.d";
 
+// prefer a generated WordPress size over the full-resolution original
+function getImageSrc(image: FeaturedMedia, size: string) {
+  return image.media_details?.sizes?.[size]?.source_url ?? image.source_url;
+}
+
 export default function ProjectGallery({
   images,
   alt,
@@ -36,10 +41,12 @@ export default function ProjectGallery({
             className="relative aspect-video overflow-hidden rounded-md border cursor-zoom-in"
           >
             <Image
-              src={image.source_url}
+              src={getImageSrc(image, "medium")}
               alt={image.alt_text || alt}
               fill
+              sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover"
+              loading={index < 3 ? "eager" : "lazy"}
             />
           </button>
         ))}
@@ -64,10 +71,12 @@ export default function ProjectGallery({
               }}
             >
               <Image
-                src={images[activeIndex].source_url}
+                src={getImageSrc(images[activeIndex], "large")}
                 alt={images[activeIndex].alt_text || alt}
                 width={images[activeIndex].media_details.width}
                 height={images[activeIndex].media_details.height}
+                sizes="100vw"
+                priority
                 className="max-h-[90%] max-w-full w-auto h-auto object-contain"
               />
               {images[activeIndex].alt_text && (
