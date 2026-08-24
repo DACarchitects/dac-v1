@@ -6,16 +6,24 @@ const wordpressUrl = process.env.WORDPRESS_URL;
 const nextConfig: NextConfig = {
   output: "standalone",
   images: {
-    remotePatterns: wordpressHostname
-      ? [
-          {
-            protocol: "https",
-            hostname: wordpressHostname,
-            port: "",
-            pathname: "/**",
-          },
-        ]
-      : [],
+    remotePatterns: [
+      ...(wordpressHostname
+        ? [
+            {
+              protocol: "https" as const,
+              hostname: wordpressHostname,
+              port: "",
+              pathname: "/**",
+            },
+          ]
+        : []),
+      {
+        protocol: "https",
+        hostname: "dacarch.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
   turbopack: {
     root: __dirname,
@@ -31,19 +39,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
-  },
-};
-
-module.exports = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "dacarch.com",
-        // port: "",
-        pathname: "/**",
-      },
-    ],
   },
 };
 

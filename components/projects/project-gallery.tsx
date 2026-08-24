@@ -71,11 +71,12 @@ export default function ProjectGallery({
               }}
             >
               <Image
-                src={getImageSrc(images[activeIndex], "large")}
+                src={images[activeIndex].source_url}
                 alt={images[activeIndex].alt_text || alt}
                 width={images[activeIndex].media_details.width}
                 height={images[activeIndex].media_details.height}
                 sizes="100vw"
+                quality={90}
                 priority
                 className="max-h-[90%] max-w-full w-auto h-auto object-contain"
               />
