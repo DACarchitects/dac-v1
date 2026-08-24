@@ -81,7 +81,7 @@ export default async function Page({
 
       <Container>
         {project.meta.heading_one && (
-          <h3 className="text-2xl mb-0 mt-6 font-bold">
+          <h3 className="text-2xl mb-0 mt-4 font-bold">
             {project.meta.heading_one}
           </h3>
         )}
@@ -97,9 +97,7 @@ export default async function Page({
 
         {projectImages.length > 0 && (
           <>
-            <p className="mt-12 mb-8">
-              <i>Click to enlarge</i>
-            </p>
+            <p className="mt-12 mb-4">{/* <i>Click to enlarge</i> */}</p>
             <ProjectGallery
               images={projectImages}
               alt={project.title.rendered}
