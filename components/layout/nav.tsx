@@ -2,11 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { MobileNav } from "@/components/nav/mobile-nav";
 import { mainMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { DAC_Icon } from "../icons/DAC_Icon";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
@@ -32,7 +39,7 @@ export function Nav({ className, children, id }: NavProps) {
         "sticky top-0 z-50 border-b bg-background",
         "transition-[background-color,backdrop-filter,box-shadow] duration-1000 ease-in-out",
         scrolled && "bg-background/50 backdrop-blur-md shadow-sm",
-        className
+        className,
       )}
       id={id}
     >
@@ -52,13 +59,31 @@ export function Nav({ className, children, id }: NavProps) {
 
         <div className="flex items-center gap-2">
           <div className="mx-2 hidden md:flex">
-            {Object.entries(mainMenu).map(([key, href]) => (
-              <Button key={href} asChild variant="ghost" size="sm">
-                <Link href={href}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Link>
-              </Button>
-            ))}
+            {Object.entries(mainMenu).map(([key, item]) =>
+              typeof item === "string" ? (
+                <Button key={key} asChild variant="ghost" size="sm">
+                  <Link href={item}>
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                  </Link>
+                </Button>
+              ) : (
+                <DropdownMenu key={key}>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="sm" className="gap-1">
+                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                      <ChevronDown className="h-3 w-3" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start">
+                    {item.items.map((sub) => (
+                      <DropdownMenuItem key={sub.href} asChild>
+                        <Link href={sub.href}>{sub.label}</Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ),
+            )}
           </div>
 
           <Button asChild className="hidden sm:flex">

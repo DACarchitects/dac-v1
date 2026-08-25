@@ -55,11 +55,31 @@ export function MobileNav() {
           <div className="flex flex-col space-y-3">
             {/* <h3 className="text-small mt-6">Menu</h3> */}
             <Separator />
-            {Object.entries(mainMenu).map(([key, href]) => (
-              <MobileLink key={key} href={href} onOpenChange={setOpen}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-              </MobileLink>
-            ))}
+            {Object.entries(mainMenu).map(([key, item]) =>
+              typeof item === "string" ? (
+                <MobileLink key={key} href={item} onOpenChange={setOpen}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </MobileLink>
+              ) : (
+                <div key={key} className="flex flex-col space-y-3">
+                  <MobileLink href={item.href} onOpenChange={setOpen}>
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                  </MobileLink>
+                  <div className="flex flex-col space-y-3 pl-4">
+                    {item.items.map((sub) => (
+                      <MobileLink
+                        key={sub.href}
+                        href={sub.href}
+                        onOpenChange={setOpen}
+                        className="text-base text-muted-foreground"
+                      >
+                        {sub.label}
+                      </MobileLink>
+                    ))}
+                  </div>
+                </div>
+              ),
+            )}
             <MobileLink href={"/contact"} onOpenChange={setOpen}>
               Contact
             </MobileLink>
