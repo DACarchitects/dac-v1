@@ -3,6 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Build Commands
+
 - `pnpm dev` - Start development server with turbo mode
 - `pnpm build` - Build for production
 - `pnpm start` - Start production server
@@ -13,6 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Headless WordPress starter using Next.js 16 App Router with TypeScript.
 
 ### Data Layer (`lib/wordpress.ts`)
+
 - All WordPress REST API interactions centralized here
 - Type definitions in `lib/wordpress.d.ts` (Post, Page, Category, Tag, Author, FeaturedMedia)
 - Two fetch patterns: `wordpressFetch` (throws on error) vs `wordpressFetchGraceful` (returns fallback)
@@ -23,30 +25,40 @@ Headless WordPress starter using Next.js 16 App Router with TypeScript.
 - Graceful degradation: builds succeed even when WordPress is unavailable
 
 ### Routing
-- Dynamic: `/posts/[slug]`, `/pages/[slug]`
+
+- Dynamic: `/posts/[slug]`, `/pages/[slug]`, `/projects/[slug]`, `/[slug]` (catch-all)
 - Archives: `/posts`, `/posts/authors`, `/posts/categories`, `/posts/tags`
+- Static projects: `/project-1`, `/project-2`, `/project-3` (showcase pages)
+- Other pages: `/contact` (contact form with EmailJS)
 - API: `/api/revalidate` (webhook), `/api/og` (OG images)
 
 ### Data Fetching Patterns
+
 - Server Components with parallel `Promise.all()` calls
 - `generateStaticParams()` uses `getAllPostSlugs()` for static generation
 - URL-based state for search/filters via `searchParams`
 - Debounced search (300ms) in `SearchInput` component
-- Next.js 15+ async params pattern: `params: Promise<{ slug: string }>`
+- Next.js 16 async params pattern: `params: Promise<{ slug: string }>`
+- Static testimonials data in `app/data.jsx`
 
 ### Revalidation Flow
+
 1. WordPress plugin sends webhook to `/api/revalidate`
 2. Validates `x-webhook-secret` header against `WORDPRESS_WEBHOOK_SECRET`
 3. Calls `revalidateTag()` for specific content types (posts, categories, tags, authors)
 4. Also calls `revalidatePath("/", "layout")` for full site refresh
 
 ### Configuration Files
-- `site.config.ts` - Site metadata (domain, name, description)
+
+- `site.config.ts` - Site metadata (domain, name, description, tagline, keywords, social, og_image)
 - `menu.config.ts` - Navigation menu structure (`mainMenu`, `contentMenu`)
 - `next.config.ts` - Image remotePatterns, /admin redirect to WordPress, standalone output
+- `app/data.jsx` - Static data for testimonials carousel
 
 ### Layout Components (`components/craft.tsx`)
+
 Local copy of craft-ds (v0.3.2) providing layout primitives:
+
 - `Section` - Page sections with vertical padding
 - `Container` - Max-width container with horizontal padding
 - `Article` - Prose container for WordPress content (max-width prose)
@@ -54,35 +66,49 @@ Local copy of craft-ds (v0.3.2) providing layout primitives:
 - `Box` - Flex/grid layout with responsive props
 
 ### Utility Functions
+
 - `lib/utils.ts` - `cn()` function for merging Tailwind classes (clsx + tailwind-merge)
 - `lib/metadata.ts` - `generateContentMetadata()` for SEO metadata, `stripHtml()` for excerpt cleaning
+- `lib/types.ts` - Shared TypeScript types and interfaces
 
 ## Code Style
 
 ### TypeScript
+
 - Strict typing with interfaces from `lib/wordpress.d.ts`
 - Async params: `params: Promise<{ slug: string }>` (Next.js 15+ pattern)
 
 ### Naming
+
 - Components: PascalCase (`PostCard.tsx`)
 - Functions/variables: camelCase
 - Types/interfaces: PascalCase
 
 ### File Structure
+
 - Pages: `/app/**/*.tsx`
-- UI components: `/components/ui/*.tsx` (shadcn/ui)
-- Feature components: `/components/posts/*.tsx`, `/components/theme/*.tsx`
-- WordPress functions must include cache tags
+- UI components: `/components/ui/*.tsx` (shadcn/ui with Radix primitives)
+- Layout components: `/components/layout/*.tsx` (nav, footer, sections)
+- Feature components: `/components/posts/*.tsx`, `/components/projects/*.tsx`, `/components/theme/*.tsx`
+- WordPress API: All functions in `lib/wordpress.ts` must include cache tags
 
 ## Environment Variables
-```
-WORDPRESS_URL="https://example.com"      # Full WordPress URL
-WORDPRESS_HOSTNAME="example.com"          # For Next.js image optimization
-WORDPRESS_WEBHOOK_SECRET="secret-key"     # Webhook validation
+
+```bash
+WORDPRESS_URL="https://example.com/"           # Full WordPress URL
+WORDPRESS_HOSTNAME="example.com/"              # For Next.js image optimization
+WORDPRESS_WEBHOOK_SECRET="secret-key"          # Webhook validation (use openssl rand -base64 32)
+NEXT_PUBLIC_WORDPRESS_URL="https://example.com/"     # Public WordPress URL
+NEXT_PUBLIC_WORDPRESS_HOSTNAME="example.com/"        # Public hostname
 ```
 
 ## Key Dependencies
-- Next.js 16 with React 19
-- Tailwind CSS v4 with `@tailwindcss/postcss`
-- shadcn/ui components (Radix primitives)
-- craft-ds for layout (`Section`, `Container`, `Article`, `Prose`)
+
+- Next.js 16.1.1 with React 19.1.0
+- TypeScript 5.9.3
+- Tailwind CSS v4.1.17 with `@tailwindcss/postcss`
+- shadcn/ui components (Radix UI primitives)
+- craft-ds patterns for layout (`Section`, `Container`, `Article`, `Prose`)
+- EmailJS for contact form (@emailjs/browser ^4.4.1)
+- React Hook Form + Zod for form validation
+- use-debounce for search optimization

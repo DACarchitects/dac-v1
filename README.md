@@ -65,10 +65,12 @@ Your site will be running at `http://localhost:3000`.
 
 - **Next.js 16.1** - React framework with App Router
 - **React 19.1** - Latest React with Server Components
-- **TypeScript 5.9** - Type-safe development
+- **TypeScript 5.9.3** - Type-safe development
 - **Tailwind CSS v4** - Utility-first CSS framework
-- **shadcn/ui** - Accessible component library
+- **shadcn/ui** - Accessible component library (Radix UI primitives)
 - **Lucide React** - Beautiful icon library
+- **EmailJS** - Contact form email delivery
+- **React Hook Form + Zod** - Form validation
 
 ### Backend
 
@@ -92,13 +94,16 @@ dac-v1/
 │   │   └── revalidate/          # Cache revalidation webhook
 │   ├── pages/                   # Dynamic WordPress pages
 │   ├── posts/                   # Blog posts & archives
-│   ├── contact/                 # Contact page
-│   ├── project-1/               # Project showcase pages
+│   ├── projects/                # Projects archive & dynamic routes
+│   │   └── [slug]/             # Individual project pages
+│   ├── contact/                 # Contact form page
+│   ├── project-1/               # Static project showcase pages
 │   ├── project-2/
 │   ├── project-3/
-│   ├── layout.tsx               # Root layout with nav
+│   ├── [slug]/                  # Catch-all dynamic page route
+│   ├── layout.tsx               # Root layout with nav/footer
 │   ├── page.tsx                 # Homepage
-│   ├── globals.css              # Global styles
+│   ├── globals.css              # Global styles + CSS variables
 │   └── data.jsx                 # Static data (testimonials)
 ├── components/
 │   ├── layout/                  # Layout components
@@ -118,8 +123,9 @@ dac-v1/
 │   └── craft.tsx                # Utility components
 ├── lib/
 │   ├── wordpress.ts             # WordPress API functions
+│   ├── wordpress.d.ts           # WordPress type definitions
 │   ├── types.ts                 # Shared TypeScript types
-│   ├── utils.ts                 # Utility functions
+│   ├── utils.ts                 # Utility functions (cn)
 │   └── metadata.ts              # SEO metadata helpers
 ├── public/                       # Static assets
 ├── plugin/                       # WordPress plugin for revalidation
@@ -130,14 +136,20 @@ dac-v1/
 
 ## Environment Variables
 
-Create a `.env.local` file in the root directory:
+Create a `.env.local` file in the root directory (or copy from `.env.example`):
 
 ```bash
 # WordPress Configuration
-WORDPRESS_URL="https://your-wordpress-site.com"    # Full WordPress URL
-WORDPRESS_HOSTNAME="your-wordpress-site.com"       # Domain for image optimization
-WORDPRESS_WEBHOOK_SECRET="your-secret-key-here"    # Secret for cache revalidation
+WORDPRESS_URL="https://your-wordpress-site.com/"        # Full WordPress URL
+WORDPRESS_HOSTNAME="your-wordpress-site.com/"           # Domain for image optimization
+WORDPRESS_WEBHOOK_SECRET="your-secret-key-here"         # Secret for cache revalidation
+
+# Public WordPress URLs (accessible from client-side)
+NEXT_PUBLIC_WORDPRESS_URL="https://your-wordpress-site.com/"
+NEXT_PUBLIC_WORDPRESS_HOSTNAME="your-wordpress-site.com/"
 ```
+
+**Generate webhook secret:** Run `openssl rand -base64 32` in your terminal.
 
 **Important:** Never commit your `.env.local` file to version control.
 
@@ -244,10 +256,18 @@ Install the WordPress plugin from the `plugin/` directory to enable automatic ca
 Edit `site.config.ts`:
 
 ```typescript
-export const siteConfig = {
+export const siteConfig: SiteConfig = {
   site_name: "DAC Architects",
-  site_description: "Design. Architect. Create.",
-  site_domain: "https://dacarch.com/",
+  site_description: "Professional architectural design firm...",
+  site_tagline: "Design. Architect. Create.",
+  site_domain: "https://dacarchdesign.com",
+  site_keywords: ["architecture", "architectural design", ...],
+  social: {
+    twitter: "@DACArchitects",
+    linkedin: "company/dac-architects",
+    instagram: "@dac_architects_llc",
+  },
+  og_image: "https://dacarch.com/wp-content/uploads/...",
 };
 ```
 
@@ -258,9 +278,13 @@ Edit `menu.config.ts`:
 ```typescript
 export const mainMenu = {
   home: "/",
-  about: "/#about",
-  services: "/#services",
   projects: "/#projects",
+};
+
+export const contentMenu = {
+  categories: "/posts/categories",
+  tags: "/posts/tags",
+  authors: "/posts/authors",
 };
 ```
 
