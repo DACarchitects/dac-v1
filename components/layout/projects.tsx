@@ -51,7 +51,7 @@ export default function Projects() {
   return (
     <Section className="px-6 lg:px-28 2xl:px-48 xl:px-36 mb-18" id="projects">
       <Prose className="pb-8 text-center">
-        <h2>Feature Projects</h2>
+        <h2>Featured Projects</h2>
       </Prose>
       <div className="grid md:grid-cols-3 gap-4 mt-6">
         <ProjectCard
