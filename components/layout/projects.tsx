@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Section, Container, Prose } from "@/components/craft";
+import { Section, Prose } from "@/components/craft";
+import { Button } from "../ui/button";
 
 // make div component to use for each service with icon, title, and description
 function ProjectCard({
@@ -50,27 +51,32 @@ export default function Projects() {
   return (
     <Section className="px-6 lg:px-28 2xl:px-48 xl:px-36 mb-18" id="projects">
       <Prose className="pb-8 text-center">
-        <h2>Our Projects</h2>
+        <h2>Feature Projects</h2>
       </Prose>
       <div className="grid md:grid-cols-3 gap-4 mt-6">
         <ProjectCard
-          title="N. Ave. Barndominium"
-          description="Ligonier, Pennsylvania"
-          imageUrl="https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png"
-          href="/project-1"
+          title="N. Florida Ave. Townhomes"
+          description="Tampa, Florida"
+          imageUrl="https://dacarch.com/wp-content/uploads/2026/08/N-Florida-Main-Rendering.png"
+          href="/projects/n-florida-ave-townhomes"
         />
         <ProjectCard
-          title="Crispy Cones"
-          description="Clearwater, Florida"
-          imageUrl="https://dacarch.com/wp-content/uploads/2026/01/Crispy-Cone-Project-1-scaled.jpg"
-          href="/project-2"
+          title="5008 Timberland"
+          description="Hillsborough County, Florida"
+          imageUrl="https://dacarch.com/wp-content/uploads/2026/08/Timberland-Siteplan.png"
+          href="/projects/5008-timberland"
         />
         <ProjectCard
-          title="Wright Residence"
-          description="Dunedin, Florida"
-          imageUrl="https://dacarch.com/wp-content/uploads/2026/01/Front-render-.jpeg"
-          href="/project-3"
+          title="Dover Residence"
+          description="St. Petersburg, Florida"
+          imageUrl="https://dacarch.com/wp-content/uploads/2026/08/Dover-St-Front-Render.png"
+          href="/projects/dover-street-residence"
         />
+      </div>
+      <div className="text-center mt-6">
+        <Button asChild>
+          <a href="/projects">View All Projects</a>
+        </Button>
       </div>
     </Section>
   );

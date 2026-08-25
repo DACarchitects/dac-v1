@@ -212,3 +212,175 @@ html {
     display: block;
   }
 }
+
+/* // From the CMS ///////////////////////////////////////////// */
+
+.dac-simple-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+/* let this block break out of the article's narrower prose column to fill the page's Container width */
+article:has(.dac-simple-project-grid) {
+  max-width: none;
+}
+
+/* the grid's outer page Container also shouldn't cap its width */
+div:has(> article:has(.dac-simple-project-grid)) {
+  max-width: none;
+}
+
+/* keep ordinary text content readable while the grid above spans the full width */
+article:has(.dac-simple-project-grid) > h3,
+article:has(.dac-simple-project-grid) > p {
+  max-width: 65ch;
+}
+
+/*
+ * Individual Card
+ */
+
+.dac-simple-project-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  min-width: 0;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  outline-offset: 2px;
+}
+
+.dac-simple-project-card:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+}
+
+/*
+ * Card Image
+ */
+
+.dac-simple-project-card-image {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+}
+
+.dac-simple-project-card-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+/*
+ * Image Hover Effect
+ */
+
+.dac-simple-project-card:hover .dac-simple-project-card-image img {
+  transform: scale(1.05);
+}
+
+/*
+ * Dark Gradient Overlay
+ */
+
+.dac-simple-project-card-gradient {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: linear-gradient(
+    to top,
+    hsl(var(--accent) / 0.9) 0%,
+    hsl(var(--accent) / 0.5) 50%,
+    hsl(var(--accent) / 0) 100%
+  );
+}
+
+/*
+ * Text Overlay
+ */
+
+.dac-simple-project-card-content {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 24px;
+
+  color: hsl(var(--foreground));
+}
+
+/*
+ * Card Title
+ */
+
+.dac-simple-project-card-content h3 {
+  margin: 0 0 8px 0;
+
+  color: hsl(var(--foreground));
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+/*
+ * Card Subtitle
+ */
+
+.dac-simple-project-card-content p {
+  margin: 0;
+
+  color: hsl(var(--foreground) / 0.9);
+
+  font-size: 14px;
+  line-height: 1.625;
+  text-wrap: pretty;
+}
+
+/*
+ * Tablet
+ *
+ * 2 cards per row
+ */
+
+@media screen and (max-width: 900px) {
+  .dac-simple-project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*
+ * Mobile
+ *
+ * 1 card per row
+ */
+
+@media screen and (max-width: 600px) {
+  .dac-simple-project-grid {
+    grid-template-columns: 1fr;
+  }
+}

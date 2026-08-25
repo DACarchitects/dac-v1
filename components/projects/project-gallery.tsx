@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2, X, ZoomIn } from "lucide-react";
 import type { FeaturedMedia } from "@/lib/wordpress.d";
 
 // prefer a generated WordPress size over the full-resolution original
@@ -19,6 +19,13 @@ export default function ProjectGallery({
   alt: string;
 }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [loadedThumbs, setLoadedThumbs] = useState<Set<number>>(new Set());
+  const [mainLoaded, setMainLoaded] = useState(false);
+
+  // reset the spinner whenever the lightbox switches to a new image
+  useEffect(() => {
+    setMainLoaded(false);
+  }, [activeIndex]);
 
   const showPrev = () =>
     setActiveIndex((i) =>
@@ -38,16 +45,25 @@ export default function ProjectGallery({
             key={image.id}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="relative aspect-video overflow-hidden rounded-md border cursor-zoom-in"
+            className="group relative aspect-video overflow-hidden rounded-md border cursor-pointer"
           >
             <Image
               src={getImageSrc(image, "medium")}
               alt={image.alt_text || alt}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
               loading={index < 3 ? "eager" : "lazy"}
+              onLoad={() => setLoadedThumbs((prev) => new Set(prev).add(index))}
             />
+            {!loadedThumbs.has(index) && (
+              <div className="absolute inset-0 flex items-center justify-center bg-muted">
+                <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+              </div>
+            )}
+            <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40">
+              <ZoomIn className="h-8 w-8 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            </div>
           </button>
         ))}
       </div>
@@ -79,7 +95,11 @@ export default function ProjectGallery({
                 quality={90}
                 priority
                 className="max-h-[90%] max-w-full w-auto h-auto object-contain"
+                onLoad={() => setMainLoaded(true)}
               />
+              {!mainLoaded && (
+                <Loader2 className="absolute h-10 w-10 animate-spin text-white" />
+              )}
               {images[activeIndex].alt_text && (
                 <i className="text-sm text-white/80">
                   {images[activeIndex].alt_text}
