@@ -44,6 +44,8 @@ export default function HeroVideo() {
           loop
           muted
           preload="auto"
+          // @ts-expect-error - fetchPriority isn't yet in React's video element typings
+          fetchPriority="high"
           playsInline
           webkit-playsinline="true"
         />
@@ -61,7 +63,7 @@ export default function HeroVideo() {
           Design for excellence
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-white sm:text-xl md:mt-8">
+        <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-white sm:text-xl md:mt-8 [text-shadow:0_1px_2px_rgba(0,0,0,0.7)]">
           Thoughtful, code-driven architecture focused on constructability,
           clarity, and long-term value.
         </p>

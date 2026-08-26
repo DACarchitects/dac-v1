@@ -124,7 +124,7 @@ export default function RootLayout({
       siteConfig.social.instagram
         ? `https://instagram.com/${siteConfig.social.instagram.replace(
             "@",
-            ""
+            "",
           )}`
         : "",
     ].filter(Boolean),
@@ -134,6 +134,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link
+          rel="preconnect"
+          href={process.env.NEXT_PUBLIC_WORDPRESS_URL}
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_WORDPRESS_URL} />
         <Script
           id="structured-data"
           type="application/ld+json"
