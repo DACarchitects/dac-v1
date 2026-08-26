@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function Hero() {
+export default function HeroVideo() {
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function Hero() {
         {/* Video for desktop - only render on md screens and above */}
         {!isMobile && (
           <video
-            src="https://dacarch.com/wp-content/uploads/2026/08/DAC-Video.mp4"
+            src="https://dacarch.com/wp-content/uploads/2026/08/DAC_HeroVideo.mp4"
             className="h-full w-full object-cover will-change-transform"
             autoPlay
             loop
@@ -59,7 +59,7 @@ export default function Hero() {
         {/* Video for mobile - only render on mobile */}
         {isMobile && (
           <video
-            src="https://dacarch.com/wp-content/uploads/2026/08/DAC-Video.mp4"
+            src="https://dacarch.com/wp-content/uploads/2026/08/DAC_HeroVideo.mp4"
             poster="https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png"
             className="h-full w-full object-cover will-change-transform"
             autoPlay
@@ -69,9 +69,11 @@ export default function Hero() {
             webkit-playsinline="true"
           />
         )}
+
+        {/* Gradient stays untouched */}
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/10 to-background" />
       </div>
 
-      <div className="hero-gradient" />
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pb-60 text-center sm:px-8 sm:pb-24 lg:px-12 lg:pb-45">
         <h1
