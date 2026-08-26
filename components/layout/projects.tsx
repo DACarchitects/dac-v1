@@ -61,7 +61,7 @@ export default function Projects() {
           href="/projects/n-florida-ave-townhomes"
         />
         <ProjectCard
-          title="5008 Timberland"
+          title="5008 Timberland Development"
           description="Hillsborough County, Florida"
           imageUrl="https://dacarch.com/wp-content/uploads/2026/08/Timberland-Siteplan.png"
           href="/projects/5008-timberland"
