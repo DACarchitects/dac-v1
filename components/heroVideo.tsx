@@ -1,10 +1,22 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint is 768px
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const bgRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
@@ -34,19 +46,32 @@ export default function Hero() {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background">
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        {/* Parallax image */}
-        <img
-          ref={bgRef}
-          src="https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png"
-          alt="Background Image of Architectural Design Project Rendering"
-          className="h-full w-full object-cover will-change-transform"
-          style={{ transform: "translate3d(0, 0, 0) scale(1.08)" }}
-        />
-
-        {/* Gradient stays untouched */}
-        <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/10 to-background" />
+        {/* Video for desktop - only render on md screens and above */}
+        {!isMobile && (
+          <video
+            src="https://dacarch.com/wp-content/uploads/2026/08/DAC-Video.mp4"
+            className="h-full w-full object-cover will-change-transform"
+            autoPlay
+            loop
+            muted
+          />
+        )}
+        {/* Video for mobile - only render on mobile */}
+        {isMobile && (
+          <video
+            src="https://dacarch.com/wp-content/uploads/2026/08/DAC-Video.mp4"
+            poster="https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png"
+            className="h-full w-full object-cover will-change-transform"
+            autoPlay
+            loop
+            muted
+            playsInline
+            webkit-playsinline="true"
+          />
+        )}
       </div>
 
+      <div className="hero-gradient" />
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pb-60 text-center sm:px-8 sm:pb-24 lg:px-12 lg:pb-45">
         <h1
@@ -70,7 +95,7 @@ export default function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="w-full sm:w-auto bg-transparent"
+            className="w-full bg-transparent border-black/70 dark:border-white/70 text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.7)] hover:text-white sm:w-auto"
             style={
               {
                 //   borderColor: "black",

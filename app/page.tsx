@@ -1,5 +1,6 @@
 // Components
 import Hero from "@/components/heroHeader";
+import HeroVideo from "@/components/heroVideo";
 import Services from "@/components/layout/services";
 import About from "@/components/layout/about";
 import Projects from "@/components/layout/projects";
@@ -13,7 +14,7 @@ import { Container } from "@/components/craft";
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HeroVideo />
       <main>
         <div style={{ marginTop: "-2rem", zIndex: "10", position: "relative" }}>
           <Services />

@@ -35,5 +35,5 @@ export const siteConfig: SiteConfig = {
     instagram: "@dac_architects_llc",
   },
   og_image:
-    "https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png",
+    "https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png",
 };
