@@ -1,23 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function HeroVideo() {
-  const [isMobile, setIsMobile] = useState(true);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint is 768px
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const bgRef = useRef<HTMLImageElement | null>(null);
+  const bgRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const el = bgRef.current;
@@ -46,29 +34,19 @@ export default function HeroVideo() {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background">
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        {/* Video for desktop - only render on md screens and above */}
-        {!isMobile && (
-          <video
-            src="https://dacarch.com/wp-content/uploads/2026/08/DAC_HeroVideo.mp4"
-            className="h-full w-full object-cover will-change-transform"
-            autoPlay
-            loop
-            muted
-          />
-        )}
-        {/* Video for mobile - only render on mobile */}
-        {isMobile && (
-          <video
-            src="https://dacarch.com/wp-content/uploads/2026/08/DAC_HeroVideo.mp4"
-            poster="https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png"
-            className="h-full w-full object-cover will-change-transform"
-            autoPlay
-            loop
-            muted
-            playsInline
-            webkit-playsinline="true"
-          />
-        )}
+        {/* Single video element for all breakpoints - avoids remounting (and re-fetching) when isMobile resolves after hydration */}
+        <video
+          ref={bgRef}
+          src="https://dacarch.com/wp-content/uploads/2026/08/DAC_HeroVideo.mp4"
+          poster="https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png"
+          className="h-full w-full object-cover will-change-transform"
+          autoPlay
+          loop
+          muted
+          preload="auto"
+          playsInline
+          webkit-playsinline="true"
+        />
 
         {/* Gradient stays untouched */}
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/10 to-background" />
