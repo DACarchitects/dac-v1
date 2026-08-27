@@ -38,7 +38,7 @@ export default function HeroVideo() {
         <video
           ref={bgRef}
           src="https://dacarch.com/wp-content/uploads/2026/08/DAC_HeroVideo.mp4"
-          poster="https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png"
+          poster="https://dacarch.com/wp-content/uploads/2026/08/Poster_Hero-Image.png"
           className="h-full w-full object-cover will-change-transform"
           autoPlay
           loop
