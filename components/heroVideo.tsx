@@ -50,7 +50,7 @@ export default function HeroVideo() {
           webkit-playsinline="true"
         />
 
-        {/* Gradient stays untouched */}
+        {/* Gradient */}
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/10 to-background" />
       </div>
 
@@ -78,12 +78,6 @@ export default function HeroVideo() {
             size="lg"
             variant="outline"
             className="w-full bg-transparent border-black/70 dark:border-white/70 text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.7)] hover:text-white sm:w-auto"
-            style={
-              {
-                //   borderColor: "black",
-                //   backgroundColor: "rgba(1, 1, 1, .1)",
-              }
-            }
             onClick={(e) => {
               e.preventDefault();
               const projectsSection = document.getElementById("projects");

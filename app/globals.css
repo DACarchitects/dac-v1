@@ -213,7 +213,9 @@ html {
   }
 }
 
-/* // From the CMS ///////////////////////////////////////////// */
+/* // For the CMS ///////////////////////////////////////////// */
+
+/* Simple Project Grid Styles */
 
 .dac-simple-project-grid {
   display: grid;
@@ -239,7 +241,7 @@ article:has(.dac-simple-project-grid) > p {
 }
 
 /*
- * Individual Card
+ * Individual Simple Card
  */
 
 .dac-simple-project-card {
@@ -265,7 +267,7 @@ article:has(.dac-simple-project-grid) > p {
 }
 
 /*
- * Card Image
+ * Simple Card Image
  */
 
 .dac-simple-project-card-image {
@@ -289,7 +291,7 @@ article:has(.dac-simple-project-grid) > p {
 }
 
 /*
- * Image Hover Effect
+ * Simple Card Image Hover Effect
  */
 
 .dac-simple-project-card:hover .dac-simple-project-card-image img {
@@ -297,7 +299,7 @@ article:has(.dac-simple-project-grid) > p {
 }
 
 /*
- * Dark Gradient Overlay
+ * Simple Card Dark Gradient Overlay
  */
 
 .dac-simple-project-card-gradient {
@@ -317,7 +319,7 @@ article:has(.dac-simple-project-grid) > p {
 }
 
 /*
- * Text Overlay
+ * Simple Card Text Overlay
  */
 
 .dac-simple-project-card-content {
@@ -333,7 +335,7 @@ article:has(.dac-simple-project-grid) > p {
 }
 
 /*
- * Card Title
+ * Simple Card Title
  */
 
 .dac-simple-project-card-content h3 {
@@ -348,7 +350,7 @@ article:has(.dac-simple-project-grid) > p {
 }
 
 /*
- * Card Subtitle
+ * Simple Card Subtitle
  */
 
 .dac-simple-project-card-content p {
@@ -373,14 +375,12 @@ article:has(.dac-simple-project-grid) > p {
   }
 }
 
-/*
- * Mobile
- *
- * 1 card per row
- */
+/* Mobile: 1 card per row */
 
 @media screen and (max-width: 600px) {
   .dac-simple-project-grid {
     grid-template-columns: 1fr;
   }
 }
+
+/* End of Simple Project Grid Styles */

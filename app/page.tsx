@@ -1,5 +1,3 @@
-// Components
-import Hero from "@/components/heroHeader";
 import HeroVideo from "@/components/heroVideo";
 import Services from "@/components/layout/services";
 import About from "@/components/layout/about";
@@ -26,14 +24,14 @@ export default function Home() {
         <Projects />
         <Ribbon
           ribbonText="Designing inspiring spaces"
-          // ribbonSubtext="El Bambino"
           ribbonImage="https://dacarch.com/wp-content/uploads/2026/01/construction-plans-drawing-tools-blueprints-scaled.jpg"
         />
-
-        {/* <p className="text-center mt-16 mb-8 text-3xl font-semibold">
-          What Our Clients Say
-        </p>
-        <TestimonialsCarousel testimonials={testimonialsArray} /> */}
+        {/* <div className="mb-16">
+          <p className="text-center mt-16 mb-8 text-3xl font-semibold">
+            What Our Clients Say
+          </p>
+          <TestimonialsCarousel testimonials={testimonialsArray} />
+        </div> */}
         <p className="text-center mt-8 text-3xl font-semibold">Get in Touch</p>
         <Container className="rounded-lg bg-card p-8 mt-2 flex flex-col lg:flex-row gap-10 lg:gap-20">
           <ContactForm />
@@ -82,84 +80,4 @@ export default function Home() {
       </main>
     </>
   );
-}
-
-{
-  //  import { File, Pen, Tag, Diamond, User, Folder } from "lucide-react";
-  /* <section className="services-section">
-          <div className="grid md:grid-cols-3 gap-4 mt-6">
-            <Link
-              className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-              href="/posts"
-            >
-              <Pen size={32} />
-              <span>
-                Posts{" "}
-                <span className="block text-sm text-muted-foreground">
-                  All posts from your WordPress
-                </span>
-              </span>
-            </Link>
-            <Link
-              className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-              href="/pages"
-            >
-              <File size={32} />
-              <span>
-                Pages{" "}
-                <span className="block text-sm text-muted-foreground">
-                  Custom pages from your WordPress
-                </span>
-              </span>
-            </Link>
-            <Link
-              className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-              href="/posts/authors"
-            >
-              <User size={32} />
-              <span>
-                Authors{" "}
-                <span className="block text-sm text-muted-foreground">
-                  List of the authors from your WordPress
-                </span>
-              </span>
-            </Link>
-            <Link
-              className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-              href="/posts/tags"
-            >
-              <Tag size={32} />
-              <span>
-                Tags{" "}
-                <span className="block text-sm text-muted-foreground">
-                  Content by tags from your WordPress
-                </span>
-              </span>
-            </Link>
-            <Link
-              className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-              href="/posts/categories"
-            >
-              <Diamond size={32} />
-              <span>
-                Categories{" "}
-                <span className="block text-sm text-muted-foreground">
-                  Categories from your WordPress
-                </span>
-              </span>
-            </Link>
-            <a
-              className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-              href="https://github.com/9d8dev/next-wp/blob/main/README.md"
-            >
-              <Folder size={32} />
-              <span>
-                Documentation{" "}
-                <span className="block text-sm text-muted-foreground">
-                  How to use `next-wp`
-                </span>
-              </span>
-            </a>
-          </div>
-        </section> */
 }

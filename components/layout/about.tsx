@@ -1,4 +1,4 @@
-import { Section, Container, Prose } from "@/components/craft";
+import { Container, Prose } from "@/components/craft";
 import Image from "next/image";
 
 export default function About() {
@@ -37,16 +37,6 @@ export default function About() {
           </p>
         </section>
       </Prose>
-
-      {/* <div className="flex justify-between items-center gap-4">
-        <div className="flex items-center gap-3"></div>
-
-        <div className="flex gap-2 items-center">
-          <Button size="lg" className="w-full sm:w-auto">
-            Contact Us
-          </Button>
-        </div>
-      </div> */}
     </Container>
   );
 }
