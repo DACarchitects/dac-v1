@@ -11,7 +11,7 @@ export default function About() {
       <Prose>
         <section className="about-section">
           <Image
-            src="https://dacarch.com/wp-content/uploads/2026/08/Dean-Main-Architect-scaled.png"
+            src="https://dacarch.com/wp-content/uploads/2026/08/Dean-Main-Architect-DAC-scaled.png"
             alt="Dean Corsaro"
             width={200}
             height={200}
