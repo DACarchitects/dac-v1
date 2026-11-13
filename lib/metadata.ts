@@ -17,6 +17,8 @@ export function generateContentMetadata({
   basePath,
   url,
 }: ContentMetadataOptions): Metadata {
+  title = stripHtml(title);
+
   const ogUrl = new URL(`${siteConfig.site_domain}/api/og`);
   ogUrl.searchParams.append("title", title);
   ogUrl.searchParams.append("description", description);
