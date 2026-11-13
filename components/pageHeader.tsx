@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { Section, Container, Prose } from "@/components/craft";
+import { Container } from "@/components/craft";
 import { stripHtml } from "@/lib/metadata";
+import PageHeaderBackground from "@/components/page-header-background";
 
 export default function PageHeader({
   title = "",
@@ -18,22 +18,15 @@ export default function PageHeader({
   return (
     <header className="relative bg-primary py-24 lg:py-32 overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        {imgSrc && (
-          <Image
-            src={imgSrc}
-            className="h-full w-full object-cover"
-            fill
-            priority
-            alt={alt}
-          />
-        )}
-        <div className="absolute inset-0 bg-black/40" />
-      </div>
+      {imgSrc ? (
+        <PageHeaderBackground src={imgSrc} alt={alt} />
+      ) : (
+        <div className="absolute inset-0 z-0 bg-black/40" />
+      )}
 
       <Container className="relative z-10 px-4">
         <div
-          className={`max-w-3xl ${
+          className={`max-w-5xl ${
             textAlign === "left"
               ? "mr-auto text-left"
               : textAlign === "right"
@@ -42,8 +35,10 @@ export default function PageHeader({
           }`}
         >
           <h1
-            className={`text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-3xl`}
-            style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
+            className={`text-balance font-serif text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl max-w-5xl`}
+            style={{
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+            }}
           >
             {stripHtml(title)}
           </h1>
