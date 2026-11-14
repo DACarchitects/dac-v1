@@ -1,0 +1,50 @@
+.slide {
+  position: absolute;
+  inset: 0;
+}
+
+.slide[data-phase="upcoming"] {
+  visibility: hidden;
+}
+
+.slide[data-phase="outgoing"] {
+  z-index: 1;
+}
+
+.slide[data-phase="current"] {
+  z-index: 2;
+}
+
+.slide[data-fade="true"] {
+  animation: hero-dissolve var(--hero-fade-duration) ease-in-out both;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.image[data-started="true"] {
+  animation: hero-motion var(--hero-motion-duration) linear both;
+}
+
+[data-playing="false"] .slide,
+[data-playing="false"] .image {
+  animation-play-state: paused;
+}
+
+@keyframes hero-dissolve {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hero-motion {
+  from { transform: var(--hero-motion-from); }
+  to { transform: var(--hero-motion-to); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide[data-fade="true"],
+  .image[data-started="true"] {
+    animation: none;
+  }
+}

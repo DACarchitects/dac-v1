@@ -1,4 +1,4 @@
-import HeroVideo from "@/components/heroVideo";
+import HeroSlideshow, { type HeroSlide } from "@/components/heroSlideshow";
 import Services from "@/components/layout/services";
 import About from "@/components/layout/about";
 import Projects from "@/components/layout/projects";
@@ -9,10 +9,50 @@ import { TestimonialsCarousel } from "@/components/testimonialsCarousel";
 import { testimonialsArray } from "./data";
 import { Container } from "@/components/craft";
 
+// Add WordPress Media Library URLs here in the order they should appear.
+const heroSlides = [
+  {
+    src: "https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png",
+    motion: "zoom-in-diagonal-right-up",
+    duration: 5000,
+    speed: 0.3,
+  },
+  {
+    src: "https://dacarch.com/wp-content/uploads/2026/11/Buddi-with-Blank-company-name.png",
+    motion: "zoom-in-diagonal-left-up",
+    duration: 7000,
+    speed: 0.5,
+  },
+  {
+    src: "https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png",
+    motion: "zoom-in-diagonal-right-down",
+    duration: 6000,
+    speed: 0.5,
+  },
+  {
+    src: "https://dacarch.com/wp-content/uploads/2026/08/Dover-St-Front-Render.png",
+    motion: "zoom-in-diagonal-right-down",
+    duration: 6000,
+    speed: 0.5,
+  },
+  {
+    src: "https://dacarch.com/wp-content/uploads/2026/11/THE-LUCKY-FLIPPER-MAIN-RENDERING.png",
+    motion: "zoom-in-diagonal-right-up",
+    duration: 6000,
+    speed: 0.5,
+  },
+  {
+    src: "https://dacarch.com/wp-content/uploads/2026/08/PROTOTYPE-A-RENDERING.png",
+    motion: "zoom-in-diagonal-right-down",
+    duration: 6000,
+    speed: 0.5,
+  },
+] satisfies HeroSlide[];
+
 export default function Home() {
   return (
     <>
-      <HeroVideo />
+      <HeroSlideshow slides={heroSlides} />
       <main>
         <div style={{ marginTop: "-2rem", zIndex: "10", position: "relative" }}>
           <Services />
