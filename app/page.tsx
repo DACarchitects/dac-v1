@@ -9,7 +9,7 @@ import { TestimonialsCarousel } from "@/components/testimonialsCarousel";
 import { testimonialsArray } from "./data";
 import { Container } from "@/components/craft";
 
-// Add WordPress Media Library URLs here in the order they should appear.
+// Slides for the hero slideshow.
 const heroSlides = [
   {
     src: "https://dacarch.com/wp-content/uploads/2026/08/5008-Timberland-Interior.png",
@@ -26,13 +26,13 @@ const heroSlides = [
   {
     src: "https://dacarch.com/wp-content/uploads/2026/01/project-rendering.png",
     motion: "zoom-in-diagonal-right-down",
-    duration: 6000,
+    duration: 7000,
     speed: 0.5,
   },
   {
     src: "https://dacarch.com/wp-content/uploads/2026/08/Dover-St-Front-Render.png",
     motion: "zoom-in-diagonal-right-down",
-    duration: 6000,
+    duration: 7000,
     speed: 0.5,
   },
   {
@@ -44,7 +44,7 @@ const heroSlides = [
   {
     src: "https://dacarch.com/wp-content/uploads/2026/08/PROTOTYPE-A-RENDERING.png",
     motion: "zoom-in-diagonal-right-down",
-    duration: 6000,
+    duration: 7000,
     speed: 0.5,
   },
 ] satisfies HeroSlide[];
